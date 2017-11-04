@@ -1,0 +1,133 @@
+body {
+	background: #4ABDAC;
+	color: #DFDCE3;
+	margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+#calendar .fc-today {
+    background: #FC4A1A;
+}
+#calendar .fc-event {
+	box-shadow: 2px 2px 2px #706868;
+}
+input {
+	width: 100px;
+}
+
+#calendar .reg-calendar {
+	float: right;
+	padding-right: 30px;
+	width: 1100px; /* 900px */
+}
+#calendar .admin-calendar {
+    width: 500px;
+    padding-left: 40px;
+}
+#wrap-admin {
+    float: left;
+    padding-left: 175px;
+    padding-right: 25px;
+    width: 100%;
+}
+
+.notifyDiv {
+    width: 100px;
+    display: inline-block;
+}
+.notify {
+    float: left;
+    margin-bottom: 10px;
+}
+
+
+@media screen and (min-width: 1280px) {
+    .drag-label {
+    	color: #FC4A1A;
+    }
+    
+    #trash {
+    	width:30px;
+    	height:40px;
+    	float:left;
+    	padding-bottom: 15px;
+    	position: relative;
+    }
+    	
+    #wrap {
+    	width: 100%; /* 1100px */
+    	margin: 0 auto;
+    	padding-left: 10px;
+    }
+    	
+    #external-events {
+        position: absolute;
+    	float: left;
+    	width: 150px;
+    	padding: 0 10px;
+    	border: 1px solid #ccc;
+    	background: #eee;
+    	text-align: left;
+    }
+    	
+    #external-events h4 {
+    	font-size: 16px;
+    	margin-top: 0;
+    	padding-top: 1em;
+    }
+    	
+    #external-events .fc-event {
+    	margin: 10px 0;
+    	cursor: pointer;
+    }
+    	
+    #external-events p {
+    	margin: 1.5em 0;
+    	font-size: 11px;
+    	color: #666;
+    }
+    	
+    #external-events p input {
+    	margin: 0;
+    	vertical-align: middle;
+    }
+    .delete-group {
+        width: 150px;
+        padding: 0 10px;
+    }
+    #delete-shifts-label {
+        color: #FC4A1A;
+    }
+}
+@media screen and (max-width: 1279px) {
+    #external-events {
+    	display: none;
+    }
+    #calendar {
+    	width: 100%;
+    	float: left;
+    }
+    #wrap-admin {
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #external-events {
+    	display: none;
+    }
+    #calendar {
+    	width: 1100px;
+    	float: left;
+    }
+    #wrap-admin {
+        padding-left: 10px;
+        padding-right: 10px;
+        float: left
+        width: 100%;
+    }
+}

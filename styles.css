@@ -1,0 +1,110 @@
+.asterix {
+	display: inline;
+	color: red;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+.left {
+	text-align: left;
+}
+.white-text {
+	color: #FFF;
+}
+.center {
+    margin: auto;
+    width: 50%;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 5px 15px;
+}
+body {
+	background: #4ABDAC;
+	color: #DFDCE3;
+	height: 100%;
+}
+.vermillion-bg {
+	background: #FC4A1A;
+}
+.vermillion-color {
+	color: #FC4A1A;
+}
+.blue-color {
+    color: #3a87ad;
+}
+textarea {
+	color: #000;
+	resize: vertical;
+}
+.grey-color {
+    color: #DFDCE3;
+}
+.grey-background {
+    background-color: #DFDCE3;
+}
+.black-color {
+    color: #000;
+}
+.bottom-footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 60px;
+}
+#loginDiv {
+    width: 400px;
+    padding: 30px 30px;
+}
+#credentials {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#signUpDiv {
+    width: 400px;
+    margin-top: 20px;
+    padding: 20px 30px;
+}
+.signUpInput {
+    width: 225px;
+}
+#new-gif {
+    display: none;
+}
+#footer {
+	/* background:#57534f; */
+	width:100%;
+	height:60px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+#wrapper {
+    min-height:100%;
+    position:relative;
+}
+#content {
+	padding-bottom:100px; /* Height of the footer element */
+}
+.mobileNav {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    #loginDiv {
+        width: 300px;
+        padding: 30px 30px;
+    }
+    #signUpDiv {
+        width: 300px;
+        padding: 30px 30px;
+    }
+    .signUpInput {
+        width: 200px;
+    }
+}
