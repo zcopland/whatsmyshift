@@ -1,4 +1,4 @@
-# Scheduler
+# WhatsMyShift.com
 
 ## Background
 This web application is for scheduling employees to work. Employees with credentials can see live schedule changes and they can also be notified via text or email whenever a schedule change is made or if there is an announcement.
@@ -10,7 +10,7 @@ In order to use this application, you must have the required login credentials. 
 I was inspired to create this application because the old scheduling system was a spreadsheet that would be posted on a bulletin board every week. This was obviously not very effective, especially for employees who did not live within the area.
 
 ## Feedback
-To become a tester and report issues with this application, please email [me](mailto:zcopland16@gmail.com?Subject=Scheduler%20App).
+To become a tester and report issues with this application, please email [me](mailto:zcopland16@gmail.com?Subject=WhatsMyShift%20App).
 Any and all suggestions are welcome and encouraged.
 
 ## Copyright
