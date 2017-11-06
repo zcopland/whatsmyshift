@@ -20,7 +20,7 @@
     		</div>
     		<div class="input-group">
     			<label for="lastName" class="white-text"><p class="asterix">* </p>Last Name:</label>
-    			<input type="text" name="lasttName" id="lasttName" class="form-control" placeholder="Smith" required="true" />
+    			<input type="text" name="lastName" id="lasttName" class="form-control" placeholder="Smith" required="true" />
     		</div>
     		<div class="input-group">
     			<label for="email" class="white-text"><p class="asterix" id="asterix-email">* </p>Email:</label>
