@@ -39,14 +39,14 @@ function insertIntoEmployees() {
     if ($result) {
         return true;
     } else {
-        echo 'Failed 1/3 to process this request. Please go back and try to submit again.';
+        echo 'Failed 1/3 to process this request. Please go back and try to submit again.' . "<br/>";
         return false;
     }
 }
 function updateCompanies() {
     global $firstName, $lastName, $username, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly, $weatherZip;
     if ($isAdmin == 1) {
-        $sql = "INSERT INTO companies(organization, companyID, adminUsername, adminEmail, organizationCount, weatherZip, weatherShow, defaultCalView, billing, totalTextSent, totalEmailSent, dateCreated) VALUES ('{$org}', '{$companyID}', '{$username}', '{$email}', 1, '{$weatherZip}', 'month', {$billing}, 1, 0, 0, '{$date}')";
+        $sql = "INSERT INTO companies(organization, companyID, adminUsername, adminEmail, organizationCount, weatherZip, weatherShow, defaultCalView, billing, totalTextSent, totalEmailSent, dateCreated) VALUES ('{$org}', '{$companyID}', '{$username}', '{$email}', 1, '{$weatherZip}', 1, 'month', '{$billing}', 0, 0, '{$date}')";
     } else if ($isAdmin == 0) {
         $sql = "SELECT * FROM companies WHERE `companyID`='{$companyID}';";
         $result1 = mysqli_query($conn_addOnly, $sql);
@@ -60,7 +60,7 @@ function updateCompanies() {
     if ($result2) {
         return true;
     } else {
-        echo 'Failed 2/3 to process this request. Please go back and try to submit again.';
+        echo 'Failed 2/3 to process this request. Please go back and try to submit again.' . "<br/>";
         return false;
     }
 }
@@ -72,7 +72,7 @@ function createCal() {
         if ($result) {
             return true;
         } else {
-            echo 'Failed 3/3 to process this request. Please go back and try to submit again.';
+            echo 'Failed 3/3 to process this request. Please go back and try to submit again.' . "<br/>";
             return false;
         }
     } else {
