@@ -7,15 +7,10 @@ include_once("analyticstracking.php");
 <html>
 <head>
 	<title>Password Reset</title>
-	<!-- Start of Bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- End of Bootsrap -->
-    <link rel="stylesheet" type="text/css" href="styles.css">
+	<?php include 'includes/header.php'; ?>
 </head>
 <body>
+    <?php include 'includes/navbar.php'; ?>
 	<div class="container">
 		<h1>Password Reset</h1><br/>
 
@@ -23,7 +18,7 @@ include_once("analyticstracking.php");
 <?php
 if (isset($_SESSION['alert-message']) && $_SESSION['alert-message'] == true) {
 	echo <<<HTML
-	<div class="alert alert-warning alert-dismissable">
+	<div class="alert alert-warning alert-dismissable" id="alert-reset">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Warning!</strong> {$_SESSION['alert-message']}
 	</div>
@@ -39,11 +34,11 @@ HTML;
 			</div><br/>
 			<div class="input-group">
 				<label for="email"><p class="asterix">* </p>Email:</label>
-				<input type="text" name="email" id="email" class="form-control" required="true" placeholder="john@doe.com" />
+				<input type="text" name="email" id="email" class="form-control" required="true" placeholder="john@doe.org" />
 			</div><br/>
 			<div class="input-group">
 				<label for="phone"><p class="asterix">* </p>Phone Number:</label>
-				<input type="text" name="phone" id="phone" class="form-control" required="true" placeholder="5551234567" />
+				<input type="text" name="phone" id="phone" class="form-control" required="true" placeholder="2075551234" />
 			</div><br/>
 			<div class="input-group">
 				<label for="password1"><p class="asterix">* </p>Password:</label>
@@ -54,9 +49,26 @@ HTML;
 				<input type="password" name="password2" class="form-control" id="password2" required="true" />
 			</div>
 			<br/><br/>
-			<button name="submit" value="submit" type="submit" class="btn btn-success btn-md">Reset</button>
+			<button name="submit" value="submit" type="submit" class="btn btn-success btn-md" id="resetButton">Reset</button>
 		</form>
 		<button class="btn vermillion-bg btn-md pull-right"><a href="index.php" class="white-text">Back</a></button>
 	</div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#resetButton').hide();
+        $('#username').focusout(function(){
+            var username = document.getElementById('username').value;
+            $.ajax({type: "POST", url: "db/check-can-reset.php", data: {username: username}, success: function(result) {
+                if (result) {
+                    $('#resetButton').show();
+                    $('#alert-reset').hide(400);
+                } else {
+                    $('#resetButton').hide();
+                    $('#alert-reset').show(400);
+                }
+            }});
+        });
+    });
+</script>
 </html>
