@@ -153,7 +153,7 @@ if (!$isAdmin) {
 	echo <<<HTML
 <br/>
 <div class="container">
-	<button class="btn pull-left vermillion-bg"><a class="white-text" href="mailto:zcopland16@gmail.com?subject=WhatsMyShift Site">Contact Support</a></button>
+	<button class="btn pull-left vermillion-bg"><a class="white-text" href="mailto:zcopland16@gmail.com?subject=WhatsMyShift">Contact Support</a></button>
 	<button class="btn pull-right vermillion-bg"><a class="white-text" href="mailto:{$adminEmail}">Contact {$adminName}</a></button>
 </div>
 HTML;
@@ -165,6 +165,12 @@ HTML;
 <!-- PHP FOR ADMIN STUFF -->
 <?php
 if ($isAdmin) {
+    echo <<<HTML
+<div class="container">
+    <button class="btn pull-left vermillion-bg" id="admin-panel-button-mobile"><a class="white-text" href="admin-panel.php">Panel</a></button>
+    <button class="btn pull-right vermillion-bg" id="notify-button-mobile"><a class="white-text" href="send-text.php">Notify</a></button>
+</div>
+HTML;
 } 
 ?>
 <!-- END OF PHP FOR ADMIN STUFF -->
@@ -173,10 +179,14 @@ if ($isAdmin) {
 <script type="text/javascript">
 $(document).ready(function() {
   $('#employee-list').hide();
-  //toggling the employee list
-  $('#showEmployees').click(function() {
-    $('#employee-list').toggle(1000);
-  });
+  var viewportWidth = $(window).width();
+  if (viewportWidth <= 1279) {
+      $('#admin-panel-button-mobile').show();
+      $('#notify-button-mobile').show();
+  } else {
+      $('#admin-panel-button-mobile').hide();
+      $('#notify-button-mobile').hide();
+  }
   $('#deleteBtn').click(function() {
       var val = $('#delete-month').val();
       var companyID = $('#companyID').val();
