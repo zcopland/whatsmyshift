@@ -33,13 +33,7 @@ TEXT;
 <html>
 <head>
 	<title>Notification Blast</title>
-	<!-- Start of Bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- End of Bootsrap -->
-    <link rel= "stylesheet" type= "text/css" href= "styles.css">
+	<?php include 'includes/header.php'; ?>
 </head>
 <body>
 	<div class="container">
@@ -50,6 +44,11 @@ TEXT;
 			<div class="input-group">
 				<label for="message" class="white-text"><p class="asterix">* </p>Message:</label><br/>
 				<textarea type="text" name="message" id="message" required="true" rows="5" cols="50" placeholder="There has been a shift change for next Thursday, please view the online schedule."></textarea>
+			</div>
+			<div class="row">
+    			<div class="col-sm-4">
+        			<p>Character count: <span id="countSpan">0</span> / 255</p>
+    			</div>
 			</div><br/>
 			<div class="row">
     			<div class="col-sm-4" style="border-style: double; border-color: #DFDCE3;">
@@ -86,6 +85,18 @@ TEXT;
 	$(document).ready(function() {
 	  //initially hide the employee select options
       $("#check-employ").hide();
+      var max = 254;
+      $('#message').keyup(function(e) {
+          var count = $('#message').val().length;
+          console.log(count);
+          $('#countSpan').text(count);
+          if (this.value.length == max) {
+              e.preventDefault();
+          } else if (this.value.length > max) {
+              // Maximum exceeded
+              this.value = this.value.substring(0, max);
+          }
+      });
       //if the radio buttons are clicked, run this function
       $('.for-who').click(function(){
         if($(this).val()=='specific'){
