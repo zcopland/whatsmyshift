@@ -107,4 +107,7 @@ textarea {
     .signUpInput {
         width: 200px;
     }
+    #desktopNavDiv {
+        display: none !important;
+    }
 }
