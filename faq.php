@@ -1,3 +1,6 @@
+<?php
+include_once("analyticstracking.php");
+?>
 <!DOCTYPE html>
   <head>
     <title>FAQ</title>
