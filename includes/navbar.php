@@ -18,7 +18,7 @@ echo <<<HTML
             <li class=""><a href="index.php">Home</a></li>
             <!-- Other Menu items -->
             <li><a href="employer-info.php">Employer info</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="faq.php">FAQ</a></li>
             <li><a href="bug-reporter.php">Bug Reporter</a></li>
             <li><a href="terms-and-conditions.html">Terms</a></li>
             <li><a href="versions.php">Versions</a></li>
