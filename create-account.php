@@ -3,8 +3,6 @@
 $underConstruction = false;
 include_once("analyticstracking.php");
 
-//TODO - check username for symbols
-
 ?>
 
 
@@ -12,15 +10,10 @@ include_once("analyticstracking.php");
 <html>
 <head>
 	<title>Create Account</title>
-	<!-- Start of Bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- End of Bootsrap -->
-    <link rel="stylesheet" type="text/css" href="styles.css">
+	<?php include 'includes/header.php'; ?>
 </head>
 <body>
+    <script src="characterHandling.js"></script>
 <?php if ($underConstruction): ?>
     <!-------- SITE UNDER CONSTRUCTION ALERT -------->
     <div class="alert alert-warning alert-dismissable">
@@ -63,15 +56,15 @@ include_once("analyticstracking.php");
 			<div id="restOfForm">
     			<div class="input-group center signUpInput">
     				<label for="firstName" class="white-text"><p class="asterix">* </p>First Name:</label>
-    				<input type="text" name="firstName" id="firstName" class="form-control" placeholder="John" required="true"/>
+    				<input type="text" name="firstName" id="firstName" class="form-control" placeholder="John" required="true" onkeyup="lettersOnly(this)"/>
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="lastName" class="white-text"><p class="asterix">* </p>Last Name:</label>
-    				<input type="text" name="lastName" id="lastName" class="form-control" placeholder="Doe" required="true"/>
+    				<input type="text" name="lastName" id="lastName" class="form-control" placeholder="Doe" required="true" onkeyup="lettersOnly(this)"/>
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="username" class="white-text"><p class="asterix">* </p>Username:</label>
-    				<input type="text" name="username" id="username" class="form-control" placeholder="johndoe" required="true"/>
+    				<input type="text" name="username" id="username" class="form-control" placeholder="johndoe" required="true" onkeyup="someSymbols(this)"/>
     			</div>
     			<div id="username-short" class="vermillion-color"><small>Username is too short!</small></div>
     			<div id="username-taken" class="vermillion-color"><small><img src="media/red-x.png" height="20" width="20" /> Username is taken!</small></div>
@@ -82,7 +75,7 @@ include_once("analyticstracking.php");
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="email" class="white-text"><p class="asterix" id="asterix-email">* </p>Email:</label>
-    				<input type="email" name="email" id="email" class="form-control" placeholder="john@doe.org"/>
+    				<input type="email" name="email" id="email" class="form-control" placeholder="john@doe.org" onkeyup="emailSymbols(this)"/>
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="phone" class="white-text"><p class="asterix">* </p>Phone Number:</label>
@@ -90,11 +83,11 @@ include_once("analyticstracking.php");
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="org" class="white-text"><p class="asterix">* </p>Organization:</label>
-    				<input type="text" name="org" id="org" class="form-control" placeholder=""/>
+    				<input type="text" name="org" id="org" class="form-control" placeholder="" onkeyup="orgSymbols(this)"/>
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="companyID" class="white-text"><p class="asterix">* </p>Company ID:</label>
-    				<input type="text" name="companyID" id="companyID" class="form-control" placeholder="" required="true"/>
+    				<input type="text" name="companyID" id="companyID" class="form-control" placeholder="" required="true" onkeyup="someSymbols(this)"/>
     			</div>
     			<div class="input-group center signUpInput zipDiv">
     				<label for="zip" class="white-text"><p class="asterix">* </p>Zip Code:</label>
