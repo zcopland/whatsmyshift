@@ -6,11 +6,22 @@ include_once("analyticstracking.php");
     <title>FAQ</title>
     <?php include 'includes/header.php'; ?>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="http://vjs.zencdn.net/6.2.8/video-js.css" rel="stylesheet">
   </head>
   <body>
       <?php include 'includes/navbar.php'; ?>
     <div class="container">
         <h1 class="vermillion-color">Frequently Asked Questions</h1><hr><br/>
+        <div class="row">
+            <video id="my-video" class="video-js" controls preload="auto" width="550" height="275"
+  poster="media/AdminTutorialPreview.png" data-setup="{}">
+            <source src="media/WhatsMyShift%20Tutorial%20Administrator.mp4" type='video/mp4'>
+            <source src="media/WhatsMyShift_Tutorial_Administrator.webm" type='video/webm'>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript.
+            </p>
+          </video>
+        </div>
         <div class="row">
             <h4><b>How do I sign up?</b></h4>
             <h5>It is easy for administrators and employees to sign up! Take a look at either the administrator or employee tutorial videos.</h5>
@@ -42,5 +53,6 @@ include_once("analyticstracking.php");
             
         });
     </script>
+    <script src="http://vjs.zencdn.net/6.2.8/video.js"></script>
   </body>
 </html>
