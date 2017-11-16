@@ -12,7 +12,8 @@ include_once("analyticstracking.php");
 <body>
     <?php include 'includes/navbar.php'; ?>
 	<div class="container">
-		<h1>Password Reset</h1><br/>
+		<h1>Password Reset</h1>
+		<small>*Make sure you have gotten permission from your administrator to reset your password.</small><br/><br/>
 
 <!-- Password Alert -->
 <?php
@@ -58,16 +59,18 @@ HTML;
     $(document).ready(function() {
         $('#resetButton').hide();
         $('#username').focusout(function(){
-            var username = document.getElementById('username').value;
-            $.ajax({type: "POST", url: "db/check-can-reset.php", data: {username: username}, success: function(result) {
-                if (result) {
-                    $('#resetButton').show();
-                    $('#alert-reset').hide(400);
-                } else {
-                    $('#resetButton').hide();
-                    $('#alert-reset').show(400);
-                }
-            }});
+            if ($(this).val().length >= 4) {
+                var username = document.getElementById('username').value;
+                $.ajax({type: "POST", url: "db/check-can-reset.php", data: {username: username}, success: function(result) {
+                    if (result) {
+                        $('#resetButton').show();
+                        $('#alert-reset').hide(400);
+                    } else {
+                        $('#resetButton').hide();
+                        $('#alert-reset').show(400);
+                    }
+                }});
+            }
         });
     });
 </script>
