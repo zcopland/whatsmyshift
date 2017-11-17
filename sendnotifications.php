@@ -113,7 +113,6 @@ function sendText() {
     // Step 5: Loop over all our friends. $number is a phone number above, and 
     // $name is the name next to it
     foreach ($people as $number => $name) {
-        echo "Made it into the for loop.";
         $sms = $client->account->messages->create(
             // the number we are sending to - Any phone number
             $number,
@@ -127,9 +126,8 @@ function sendText() {
                 'body' => "Hello {$name},\n" . $body . "\n--Sent from {$organization}"
             )
         );
-        echo "<br/>Text has been sent.";
         // Display a confirmation message on the screen
-        echo "<h3>Sent message to {$name}</h3>";
+        echo "<h3>Sent text to {$name}</h3>";
         $numberOfTexts++;
     }
     echo "<h4>Text total: $numberOfTexts</h4>";
