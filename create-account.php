@@ -79,7 +79,7 @@ include_once("analyticstracking.php");
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="phone" class="white-text"><p class="asterix">* </p>Phone Number:</label>
-    				<input type="tel" name="phone" id="phone" class="form-control" placeholder="2075551234" required="true"/>
+    				<input type="tel" name="phone" id="phone" class="form-control" placeholder="2075551234" required="true" onkeyup="numbersOnly(this)" maxlength="10"/>
     			</div>
     			<div class="input-group center signUpInput">
     				<label for="org" class="white-text"><p class="asterix">* </p>Organization:</label>
