@@ -17,3 +17,8 @@ function emailSymbols(input) {
     var regex = /[-!$%^&*()+|~=`{}\[\]:";'<>?,\/]/;
     input.value = input.value.replace(regex, "");
 }
+function numbersOnly(input) {
+    //only numbers
+    var regex = /[^0-9]/;
+    input.value = input.value.replace(regex, "");
+}
