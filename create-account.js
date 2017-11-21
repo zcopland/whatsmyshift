@@ -75,7 +75,6 @@ $('input[type=radio][name=role]').change(function() {
         $('#billing').prop('required', false);
     }
 });
-
 $('#verification').focusout(function(){
 	var code = $(this).val();
 	var username = document.getElementById('username').value;
