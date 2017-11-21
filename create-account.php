@@ -74,6 +74,19 @@ include_once("analyticstracking.php");
     				<input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required="true"/>
     			</div>
     			<div class="input-group center signUpInput">
+    				<label for="securityQuestion" class="white-text"><p class="asterix">* </p>Security Question:</label>
+    				<select id="securityQuestion" name="securityQuestion" class="form-control" required="true">
+        				<option value="What was your high school mascot?">What was your high school mascot?</option>
+        				<option value="What was the name of your first pet?">What was the name of your first pet?</option>
+        				<option value="What was the make and model of your first car?">What was the make and model of your first car?</option>
+        				<option value="What was your favorite sport in high school?">What was your favorite sport in high school?</option>
+    				</select>
+    			</div>
+    			<div class="input-group center signUpInput">
+    				<label for="securityAnswer" class="white-text"><p class="asterix">* </p>Security Answer:</label>
+    				<input type="text" name="securityAnswer" id="securityAnswer" class="form-control" placeholder="" required="true" onkeyup="someSymbols(this)"/>
+    			</div>
+    			<div class="input-group center signUpInput">
     				<label for="email" class="white-text"><p class="asterix" id="asterix-email">* </p>Email:</label>
     				<input type="email" name="email" id="email" class="form-control" placeholder="john@doe.org" onkeyup="emailSymbols(this)"/>
     			</div>
