@@ -1,5 +1,6 @@
 <?php
 include 'dbh_addOnly.php';
+include 'dbh_readOnly.php';
 include 'config.php';
 date_default_timezone_set('America/New_York');
 
@@ -21,6 +22,7 @@ $companyID = sanitize($companyID);
 $companyID = strtoupper($companyID);
 $securityQuestion = $_POST['securityQuestion'];
 $securityAnswer = $_POST['securityAnswer'];
+$adminEmail = '';
 
 $date = date("m/d/Y @ g:ia");
 $billing = $_POST['billing'];
@@ -43,7 +45,7 @@ function insertIntoEmployees() {
     if ($result) {
         return true;
     } else {
-        echo 'Failed 1/3 to process this request. Please go back and try to submit again.' . "<br/>";
+        echo 'Failed 1/4 to process this request. Please go back and try to submit again.' . "<br/>";
         return false;
     }
 }
@@ -64,7 +66,7 @@ function updateCompanies() {
     if ($result2) {
         return true;
     } else {
-        echo 'Failed 2/3 to process this request. Please go back and try to submit again.' . "<br/>";
+        echo 'Failed 2/4 to process this request. Please go back and try to submit again.' . "<br/>";
         return false;
     }
 }
@@ -76,7 +78,7 @@ function createCal() {
         if ($result) {
             return true;
         } else {
-            echo 'Failed 3/3 to process this request. Please go back and try to submit again.' . "<br/>";
+            echo 'Failed 3/4 to process this request. Please go back and try to submit again.' . "<br/>";
             return false;
         }
     } else {
@@ -84,8 +86,23 @@ function createCal() {
     }
 }
 
-if (insertIntoEmployees() && updateCompanies() && createCal()) {
-    header("Location: send-email.php?firstName={$firstName}&lastName={$lastName}&username={$username}&organization={$org}");
+function getAdminEmail() {
+    global $companyID, $conn_readOnly, $adminEmail;
+    $sql = "SELECT * FROM `companies` WHERE `companyID`='{$companyID}';";
+    $result = mysqli_query($conn_readOnly, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $adminEmail = $row['adminEmail'];
+    if (!empty($adminEmail)) {
+        return true;
+    } else {
+        echo 'Failed 4/4 to process this request. Please go back and try to submit again.' . "<br/>";
+        return false;
+    }
+    
+}
+
+if (insertIntoEmployees() && updateCompanies() && createCal() && getAdminEmail()) {
+    header("Location: send-email.php?adminEmail={$adminEmail}&companyID={$companyID}&firstName={$firstName}&lastName={$lastName}&username={$username}&organization={$org}");
 }
 
 
