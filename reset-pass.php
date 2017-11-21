@@ -11,9 +11,10 @@ include_once("analyticstracking.php");
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
+    <script src="characterHandling.js"></script>
 	<div class="container">
-		<h1>Password Reset</h1>
-		<small>*Make sure you have gotten permission from your administrator to reset your password.</small><br/><br/>
+		<h1>Password Reset</h1><br/>
+		<small>*Make sure you have gotten permission from your administrator to reset your password.</small><br/>
 
 <!-- Password Alert -->
 <?php
@@ -28,26 +29,23 @@ HTML;
 ?>
 <!-- Password Alert -->
 
-		<form method="POST" action="db/reset.php">
+		<form method="POST" id="resetForm" action="db/reset.php">
 			<div class="input-group">
 				<label for="username"><p class="asterix">* </p>Username:</label>
 				<input type="text" name="username" class="form-control" id="username" autofocus="true" required="true" />
 			</div><br/>
 			<div class="input-group">
-				<label for="email"><p class="asterix">* </p>Email:</label>
-				<input type="text" name="email" id="email" class="form-control" required="true" placeholder="john@doe.org" />
-			</div><br/>
-			<div class="input-group">
-				<label for="phone"><p class="asterix">* </p>Phone Number:</label>
-				<input type="text" name="phone" id="phone" class="form-control" required="true" placeholder="2075551234" />
-			</div><br/>
+				<label for="answer"><p class="asterix">* </p>Question: <span id="securityQuestion"></span></label>
+				<input type="text" name="securityAnswer" id="securityAnswer" class="inputResize" required="true" placeholder="" />
+				<span class="help-block">* Case sensitive</span>
+			</div>
 			<div class="input-group">
 				<label for="password1"><p class="asterix">* </p>Password:</label>
 				<input type="password" name="password1" class="form-control" id="password1" required="true" />
 			</div><br/>
 			<div class="input-group">
 				<label for="password2"><p class="asterix">* </p>Re-type Password:</label>
-				<input type="password" name="password2" class="form-control" id="password2" required="true" />
+				<input type="password" name="password2" class="inputResize" id="password2" required="true" />
 			</div>
 			<br/><br/>
 			<button name="submit" value="submit" type="submit" class="btn btn-success btn-md" id="resetButton">Reset</button>
@@ -63,14 +61,40 @@ HTML;
                 var username = document.getElementById('username').value;
                 $.ajax({type: "POST", url: "db/check-can-reset.php", data: {username: username}, success: function(result) {
                     if (result) {
-                        $('#resetButton').show();
+                        //$('#resetButton').show();
                         $('#alert-reset').hide(400);
                     } else {
                         $('#resetButton').hide();
                         $('#alert-reset').show(400);
                     }
                 }});
+                $.ajax({type: "POST", url: "db/check-security-info.php", data: {username: username, mode: 'question'}, success: function(result) {
+                    $('#securityQuestion').text(result);
+                }, error: function() {
+                    alert('Could not find security question!');
+                }
+                });
             }
+        });
+        $('#securityAnswer').focusout(function(){
+            var username = document.getElementById('username').value;
+            if ($(this).val().length >= 2 && username.length >= 4) {
+                var securityAnswer_guess = $(this).val();
+                $.ajax({type: "POST", url: "db/check-security-info.php", data: {username: username, securityAnswer_guess: securityAnswer_guess, mode: 'answer'}, success: function(result) {
+                    if (result) {
+                        $('#resetButton').show();
+                    } else {
+                        $('#resetButton').hide();
+                    }
+                }});
+            }
+        });
+        $('#resetForm').on('keyup keypress', function(e) {
+          var keyCode = e.keyCode || e.which;
+          if (keyCode === 13) { 
+            e.preventDefault();
+            return false;
+          }
         });
     });
 </script>
