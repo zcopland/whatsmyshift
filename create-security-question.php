@@ -9,6 +9,12 @@ $Account = new Account($_SESSION['id'], $conn_readOnly);
 $securityQuestion = $Account->getSecurityQuestion();
 $securityAnswer = $Account->getSecurityAnswer();
 $username = $Account->getUsername();
+
+if (!empty($securityQuestion) && !empty($securityAnswer)) {
+    header('Location: main.php');
+} else if (!isset($username)) {
+    header('Location: index.php');
+}
 ?>
 
 
@@ -49,7 +55,6 @@ $username = $Account->getUsername();
 			</div>
 		</form>
     	</div>
-		<button class="btn vermillion-bg btn-md pull-right white-text" id="back">Back</button>
 	</div>
 	<script>
     	$(document).ready(function() {
