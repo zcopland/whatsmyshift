@@ -18,6 +18,8 @@ $companyID = $Account->getCompanyID();
 $adminName = $Account->getAdminName($companyID, $conn_readOnly);
 $adminEmail = $Account->getAdminEmail($companyID, $conn_readOnly);
 $lastLogin = $Account->getLastLogin();
+$securityQuestion = $Account->getSecurityQuestion();
+$securityAnswer = $Account->getSecurityAnswer();
 $zip = $Account->getZip($companyID, $conn_readOnly);
 $defaultCalView = $Account->getDefaultCalView($companyID, $conn_readOnly);
 $weatherShow = $Account->getWeatherShow($companyID ,$conn_readOnly);
@@ -25,6 +27,12 @@ $weatherShow = $Account->getWeatherShow($companyID ,$conn_readOnly);
 //if username is not set, send them back to login page
 if (!isset($_SESSION['username'])  || empty($_SESSION['username'])) {
     header('Location: index.php');
+}
+
+//if they do not have a security question/answer redirect
+//remove after everyone has created one
+if (empty($securityQuestion) || empty($securityAnswer)) {
+    header('Location: create-security-question.php');
 }
 
 /* Site Under Construction Variable */
