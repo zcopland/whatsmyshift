@@ -94,6 +94,13 @@ textarea {
 .mobileNav {
     display: none;
 }
+.inputResize {
+    display: block;
+    padding-left: 10px;
+    height: 32px;
+    width: 250px;
+    color: #595858;
+}
 
 @media screen and (max-width: 480px) {
     #loginDiv {
