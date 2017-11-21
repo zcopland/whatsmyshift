@@ -8,6 +8,7 @@ $firstName = sanitize($firstName);
 $lastName = $_POST['lastName'];
 $lastName = sanitize($lastName);
 $username = $_POST['username'];
+$username = strtolower($username);
 $username = sanitize($username);
 $pwd = password_hash($_POST['password'], PASSWORD_BCRYPT, array("cost" => 10));
 $email = $_POST['email'];
@@ -18,6 +19,9 @@ $org = $_POST['org'];
 $companyID = $_POST['companyID'];
 $companyID = sanitize($companyID);
 $companyID = strtoupper($companyID);
+$securityQuestion = $_POST['securityQuestion'];
+$securityAnswer = $_POST['securityAnswer'];
+
 $date = date("m/d/Y @ g:ia");
 $billing = $_POST['billing'];
 $isAdmin = 0;
@@ -33,8 +37,8 @@ function sanitize($dirty) {
 }
 
 function insertIntoEmployees() {
-    global $firstName, $lastName, $username, $pwd, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly;
-    $sql = "INSERT INTO employees(firstName, lastName, username, password, email, phone, organization, companyID, isAdmin, lastLogin) VALUES ('{$firstName}', '{$lastName}', '{$username}', '{$pwd}', '{$email}', '{$phone}', '{$org}', '{$companyID}', {$isAdmin}, '{$date}')";
+    global $firstName, $lastName, $username, $pwd, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly, $securityAnswer, $securityQuestion;
+    $sql = "INSERT INTO employees(firstName, lastName, username, password, email, phone, organization, companyID, isAdmin, securityQuestion, securityAnswer, lastLogin) VALUES ('{$firstName}', '{$lastName}', '{$username}', '{$pwd}', '{$email}', '{$phone}', '{$org}', '{$companyID}', {$isAdmin}, '{$securityQuestion}', '{$securityAnswer}', '{$date}')";
     $result = mysqli_query($conn_addOnly, $sql);
     if ($result) {
         return true;
