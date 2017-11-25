@@ -47,9 +47,11 @@ while ($row = mysqli_fetch_assoc($result)) {
 	<title>What's My Shift</title>
 	<?php include 'includes/header.php'; ?>
 	<script type="text/javascript" src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="snow.css">
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
+    <div id="snow">
 	</br></br>
     <h1 class="text-center">Please Log in</h1><br/><br/>
     <div id="wrapper">
@@ -101,7 +103,7 @@ HTML;
           <p class="text-center">This site uses cookies to stay logged in.</p>
           <!--button class="btn btn-sm pull-right"><a href="versions.php" class="white-text">Versions</a></button-->
           <p class="text-center">Copyright Zach Copland <?php echo date("Y"); ?>. Version: <?php echo $currentVersion; ?></p>
-      </div></div>
+      </div></div></div>
 <?php
 //check if cookies are set
 if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
