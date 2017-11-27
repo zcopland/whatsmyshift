@@ -22,6 +22,7 @@ $canReset = $Account->getCanReset();
 $checked = '';
 $employeeCount = $Account->getEmployeeCount($companyID, $conn_readOnly);
 $employeeTable = $Account->getEmployeeTable($companyID, $conn_readOnly);
+$notificationTable = $Account->getNotificationTable($companyID, $conn_readOnly);
 
 //if username is not set, send them back to login page
 if (!isset($isAdmin)  || empty($isAdmin)) {
@@ -110,7 +111,7 @@ echo <<<HTML
             <small id="saved-small" style="color: #fff">Saved!</small>
         </div>
         <div class="row">
-            <h2>Employee Database</h2>
+            <h2>Employee Table</h2>
         </div><br/>
         {$employeeTable}
         <div class="row">
@@ -122,6 +123,10 @@ echo <<<HTML
         <div class="row">
             <span class="glyphicon glyphicon-minus"></span><small> = you have already reset it</small>
         </div>
+        <div class="row">
+            <h2>Notification Table</h2>
+        </div><br/>
+        {$notificationTable}
     <button id="back" class="btn vermillion-bg btn-md pull-right">Back</button>
     </div>
     <script>
