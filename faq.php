@@ -46,6 +46,10 @@ include_once("analyticstracking.php");
             <h4><b>How old do my employees have to be to sign up?</b></h4>
             <h5>To use this service, all users must be 16 years or older, per our <a href="terms-and-conditions.html">Terms and Conditions</a>.</h5>
         </div>
+        <div class="row">
+            <h4><b>How do I see my employee login times?</b></h4>
+            <h5>All login attempts are stored in a database. To view specific login attempts, contact the <a href="mailto:zcopland16@gmail.com?subject=WhatsMyShift Login Attempts">site administrator</a>.</h5>
+        </div>
     </div>
     <script type="text/javascript"></script>
     <script>
