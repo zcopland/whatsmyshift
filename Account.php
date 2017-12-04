@@ -144,6 +144,28 @@ TEXT;
         $html .= "</tr></table></div>";
         return $html;
     }
+    public function getLoginTable($companyID, $conn) {
+        $query = "SELECT * FROM `logins` WHERE companyID='{$companyID}';";
+        $result = mysqli_query($conn, $query);
+        $html = "<div id=\"loginTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Username</th><th>Successful</th><th>Date</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+    		$successful = '';
+    		if ($row['successful']) {
+        		$successful = 'Yes';
+    		} else {
+        		$successful = 'No';
+    		}
+    		$html .= <<<TEXT
+    <tr>
+      <td>{$row['username']}</td>
+      <td>{$successful}</td>
+      <td>{$row['date']}</td>
+TEXT;
+            
+        }
+        $html .= "</tr></table></div>";
+        return $html;
+    }
 }
 
 ?>

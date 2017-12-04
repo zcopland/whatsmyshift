@@ -3,18 +3,21 @@ session_start();
 $_SESSION['loggedIn'] = false;
 date_default_timezone_set('America/New_York');
 include 'dbh_readOnly.php';
+include 'dbh_addOnly.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+$companyID = '';
 $remember = '';
+$date = date("m/d/Y @ g:ia");
 if (isset($_POST['remember'])) {
     $remember = $_POST['remember'];
 }
 
-$sql = "SELECT * FROM employees WHERE username='{$username}'";
+$sql = "SELECT * FROM `employees` WHERE username='{$username}';";
 $result = mysqli_query($conn_readOnly, $sql);
-
 $row = mysqli_fetch_assoc($result);
+$companyID = $row['companyID'];
 
 if (password_verify($password, $row['password'])) {
     //Correct
@@ -22,9 +25,10 @@ if (password_verify($password, $row['password'])) {
         setcookie('username', $username, time() + 3600 * 7, '/');
         setcookie('password', $password, time() + 3600 * 7, '/');
     }
-    $date = date("m/d/Y @ g:ia");
-    $sql = "UPDATE employees SET lastLogin='{$date}' WHERE username='{$username}'";
+    $sql = "UPDATE `employees` SET lastLogin='{$date}' WHERE username='{$username}';";
     $result = mysqli_query($conn_readOnly, $sql);
+    $sql = "INSERT INTO `logins`(username, companyID, successful, `date`) VALUES ('{$username}', '{$companyID}', 1, '{$date}');";
+    $result = mysqli_query($conn_addOnly, $sql);
     $_SESSION['loggedIn'] = true;
     $_SESSION['incorrect'] = false;
     $_SESSION['pass-alert-index'] = false;
@@ -40,6 +44,8 @@ if (password_verify($password, $row['password'])) {
     }
 } else  {
     //Incorrect
+    $sql = "INSERT INTO `logins`(username, companyID, successful, `date`) VALUES ('{$username}', '{$companyID}', 0, '{$date}');";
+    $result = mysqli_query($conn_addOnly, $sql);
     $_SESSION['loggedIn'] = false;
     $_SESSION['incorrect'] = true;
     $_SESSION['pass-alert-index'] = true;

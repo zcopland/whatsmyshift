@@ -23,6 +23,7 @@ $checked = '';
 $employeeCount = $Account->getEmployeeCount($companyID, $conn_readOnly);
 $employeeTable = $Account->getEmployeeTable($companyID, $conn_readOnly);
 $notificationTable = $Account->getNotificationTable($companyID, $conn_readOnly);
+$loginTable = $Account->getLoginTable($companyID, $conn_readOnly);
 
 //if username is not set, send them back to login page
 if (!isset($isAdmin)  || empty($isAdmin)) {
@@ -127,6 +128,10 @@ echo <<<HTML
             <h2>Notification Table</h2>
         </div><br/>
         {$notificationTable}
+        <div class="row">
+            <h2>Login Table</h2>
+        </div><br/>
+        {$loginTable}
     <button id="back" class="btn vermillion-bg btn-md pull-right">Back</button>
     </div>
     <script>
