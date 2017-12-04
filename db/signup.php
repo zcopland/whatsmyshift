@@ -52,7 +52,7 @@ function insertIntoEmployees() {
 function updateCompanies() {
     global $firstName, $lastName, $username, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly, $weatherZip, $billing;
     if ($isAdmin == 1) {
-        $sql = "INSERT INTO companies(organization, companyID, adminUsername, adminEmail, organizationCount, weatherZip, weatherShow, defaultCalView, billing, totalTextSent, totalEmailSent, dateCreated) VALUES ('{$org}', '{$companyID}', '{$username}', '{$email}', 1, '{$weatherZip}', 1, 'month', '{$billing}', 0, 0, '{$date}')";
+        $sql = "INSERT INTO companies(organization, companyID, adminUsername, adminEmail, organizationCount, weatherZip, weatherShow, defaultCalView, billing, totalTextSent, totalEmailSent, canViewLogins, dateCreated) VALUES ('{$org}', '{$companyID}', '{$username}', '{$email}', 1, '{$weatherZip}', 1, 'month', '{$billing}', 0, 0, 0, '{$date}')";
     } else if ($isAdmin == 0) {
         $sql = "SELECT * FROM companies WHERE `companyID`='{$companyID}';";
         $result1 = mysqli_query($conn_addOnly, $sql);

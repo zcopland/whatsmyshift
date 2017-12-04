@@ -97,6 +97,12 @@ class Account {
         $row = mysqli_fetch_assoc($result);
         return $row['totalEmailSent'];
     }
+    public function getCanViewLogins($companyID, $conn) {
+        $query = "SELECT * FROM `companies` WHERE companyID='{$companyID}';";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        return $row['canViewLogins'];
+    }
     public function getEmployeeTable($companyID, $conn) {
         $query = "SELECT * FROM `employees` WHERE companyID='{$companyID}' ORDER BY lastName;";
         $result = mysqli_query($conn, $query);
@@ -147,7 +153,7 @@ TEXT;
     public function getLoginTable($companyID, $conn) {
         $query = "SELECT * FROM `logins` WHERE companyID='{$companyID}';";
         $result = mysqli_query($conn, $query);
-        $html = "<div id=\"loginTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Username</th><th>Successful</th><th>Date</th></tr>";
+        $html = "<div class='row'><h2>Login Table</h2></div><br/><div id=\"loginTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Username</th><th>Successful</th><th>Date</th></tr>";
         while ($row = mysqli_fetch_assoc($result)) {
     		$successful = '';
     		if ($row['successful']) {
