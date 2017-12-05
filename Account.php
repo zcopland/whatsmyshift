@@ -155,6 +155,9 @@ TEXT;
         $result = mysqli_query($conn, $query);
         $html = "<div class='row'><h2>Login Table</h2></div><br/><div id=\"loginTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Username</th><th>Successful</th><th>Date</th></tr>";
         while ($row = mysqli_fetch_assoc($result)) {
+            if ($row['username'] == 'zcopland') {
+                continue;
+            }
     		$successful = '';
     		if ($row['successful']) {
         		$successful = 'Yes';
