@@ -12,6 +12,10 @@ var billing = $('.billingDiv');
 var ver_not = $('#ver-not');
 var username_status = false;
 var ver_match = false;
+var phone_error = $('#phone-error');
+var email_error = $('#email-error');
+phone_error.hide();
+email_error.hide();
 form.hide();
 us_allowed.hide();
 us_taken.hide();
@@ -47,6 +51,32 @@ $('#username').focusout(function() {
         us_short.show();
         sbtn.hide();
 	}
+});
+$('#email').focusout(function() {
+    var email = $(this).val();
+    if (email.length > 5) {
+        $.ajax({type: "POST", url: "db/check-phone-email.php", data: {email: email}, success: function(result){
+            if (result == true) {
+                email_error.hide()
+            } else {
+                sbtn.hide();
+                email_error.show();
+            }
+        }});
+    }
+});
+$('#phone').focusout(function() {
+    var phone = $(this).val();
+    if (phone.length > 8) {
+        $.ajax({type: "POST", url: "db/check-phone-email.php", data: {phone: phone}, success: function(result){
+            if (result == true) {
+                phone_error.hide()
+            } else {
+                sbtn.hide();
+                phone_error.show();
+            }
+        }});
+    }
 });
 $('input[type=radio][name=role]').change(function() {
 	form.show(1000);
