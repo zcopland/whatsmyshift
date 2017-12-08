@@ -7,7 +7,7 @@ date_default_timezone_set('America/New_York');
 $date = date("Y-m-d", time() - 86400 * (int)$val); //86400 = 1 day
 
 //First query
-$sql = "INSERT INTO calendararchive (title, startdate, enddate, allDay, dateStamp) SELECT title, startdate, enddate, allDay, dateStamp FROM calendar WHERE dateStamp <= '{$date}'";
+$sql = "INSERT INTO calendararchive (title, startdate, enddate, allDay, dateStamp) SELECT title, startdate, enddate, allDay, dateStamp FROM calendar_{$companyID} WHERE dateStamp <= '{$date}'";
 if (mysqli_query($con, $sql)) {
     echo true;
 } else {
