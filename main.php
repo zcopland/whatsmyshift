@@ -29,6 +29,10 @@ if (!isset($_SESSION['username'])  || empty($_SESSION['username'])) {
     header('Location: index.php');
 }
 
+if (isset($_SESSION['username']) == 'root') {
+    header('Location: root-panel.php');
+}
+
 //if they do not have a security question/answer redirect
 //remove after everyone has created one
 if (empty($securityQuestion) || empty($securityAnswer)) {
