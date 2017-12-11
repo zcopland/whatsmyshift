@@ -139,10 +139,14 @@ echo <<<HTML
         </table>
     </div>
     <button id="back" class="btn vermillion-bg btn-md pull-right">Back</button>
+    <button id="notify" class="btn vermillion-bg btn-md pull-left">Notify</button>
     <script>
         $(document).ready(function() {
             $('#back').click(function() {
                 window.history.back(-1);
+            });
+            $('#notify').click(function() {
+                window.location.href = 'root-notification.php';
             });
         });
     </script>
