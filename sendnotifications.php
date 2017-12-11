@@ -325,7 +325,7 @@ function sendEmail() {
                 <!-- Hero Image, Flush : BEGIN -->
                 <!--tr>
                     <td bgcolor="#ffffff">
-                        <img src="media/windham-front.jpg" aria-hidden="true" width="600" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                        <img src="" aria-hidden="true" width="600" height="" alt="alt_text" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
                     </td>
                 </tr-->
                 <!-- Hero Image, Flush : END -->
