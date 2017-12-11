@@ -45,7 +45,7 @@ include_once("analyticstracking.php");
       <!-- /Modal-->
     	<div id="signUpDiv" class="text-center grey-background center">
 		<h1 class="text-center vermillion-color">Create an account</h1><br/>
-		<form action="db/signup.php" method="POST">
+		<form action="db/signup.php" id="create-account-form" method="POST" onsubmit="validate();">
     		<div class="input-group center signUpInput">
 				<label class="white-text"><p class="asterix">* </p>Role:</label><br/>
 				<input type="radio" name="role" id="adminRole" value="admin" class="" required="true"/>
