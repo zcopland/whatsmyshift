@@ -24,14 +24,24 @@ $Information = new Information();
 $method = $_POST['how-update'];
 $numberOfTexts = 0;
 $numberOfEmails = 0;
-$companyID = $_SESSION['companyID'];
 $username = $_SESSION['username'];
 $organization = $_SESSION['organization'];
 $firstName = $Account->getFirstName();
 $lastName = $Account->getLastName();
 $email = $Account->getEmail();
-$totalTextSent = $Account->getTotalTextSent($companyID, $conn_addOnly);
-$totalEmailSent = $Account->getTotalEmailSent($companyID, $conn_addOnly);
+$companyID = '';
+$totalEmailSent = 0;
+$totalTextSent = 0;
+$role = '';
+if ($_POST['role'] == 'root') {
+    $role = 'root';
+} else {
+    $companyID = $_SESSION['companyID'];
+    $totalTextSent = $Account->getTotalTextSent($companyID, $conn_addOnly);
+    $totalEmailSent = $Account->getTotalEmailSent($companyID, $conn_addOnly);
+}
+
+
 $fullName = '';
 $headers  = "From: {$firstName} {$lastName} <{$email}>\n";
 $headers .= 'X-Mailer: PHP/' . phpversion();
@@ -433,21 +443,27 @@ function sendFailedEmail() {
 switch ($method) {
     case 'email':
         sendEmail();
-        if (!updateNotificationDB()) {
-            sendFailedEmail();
+        if ($role != 'root') {
+            if (!updateNotificationDB()) {
+                sendFailedEmail();
+            }
         }
         break;
     case 'text':
         sendText();
-        if (!updateNotificationDB()) {
-            sendFailedEmail();
+        if ($role != 'root') {
+            if (!updateNotificationDB()) {
+                sendFailedEmail();
+            }
         }
         break;
     case 'both':
         sendText();
         sendEmail();
-        if (!updateNotificationDB()) {
-            sendFailedEmail();
+        if ($role != 'root') {
+            if (!updateNotificationDB()) {
+                sendFailedEmail();
+            }
         }
         break;
     default:
