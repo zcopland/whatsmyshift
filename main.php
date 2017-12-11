@@ -29,7 +29,7 @@ if (!isset($_SESSION['username'])  || empty($_SESSION['username'])) {
     header('Location: index.php');
 }
 
-if (isset($_SESSION['username']) == 'root') {
+if ($username == 'root') {
     header('Location: root-panel.php');
 }
 
