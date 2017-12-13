@@ -14,12 +14,15 @@ var username_status = false;
 var ver_match = false;
 var phone_error = $('#phone-error');
 var email_error = $('#email-error');
+var companyID_taken = $('#companyID-taken');
 var check_username = false;
 var check_phone = false;
 var check_email = false;
 var check_ver = false;
+var check_companyID = false;
 var fields = [];
 var empty_fields = [];
+companyID_taken.hide();
 phone_error.hide();
 email_error.hide();
 form.hide();
@@ -139,26 +142,26 @@ $('#verification').focusout(function(){
 });
 
 $('#companyID').focusout(function(){
-	var code = $(this).val();
+	var companyID = $(this).val();
 	var username = document.getElementById('username').value;
 	if (username_status) {
-    	if (code.length >= 7 && ver_match == false) {
-        	$.ajax({type: "POST", url: "db/check-company-id.php", data: {username: username, code: code}, success: function(result){
+    	if (companyID.length >= 1) {
+        	$.ajax({type: "POST", url: "db/check-company-id.php", data: {companyID: companyID}, success: function(result){
                 if (result == true) {
-                    
+                    companyID_taken.hide();
+                    check_companyID = true;
                 } else {
-                    
+                    companyID_taken.show();
+                    check_companyID = false;
                 }
             }});
-    	} else if (code.length <= 0) {
-        	ver_not.hide();
     	}
 	} else {
     	$('#modal-text').html('Please ensure you have an approved username first!');
         $("#myModal").modal();
 	}
 	if (role == 'regular') {
-    	$.ajax({type: "POST", url: "db/find-org.php", data: {companyID: code}, success: function(result){
+    	$.ajax({type: "POST", url: "db/find-org.php", data: {companyID: companyID}, success: function(result){
             if (result != false) {
                 $('#org').val(result);
             } else {
@@ -173,6 +176,9 @@ function checkFields() {
     empty_fields = [];
     if (role == 'admin') {
         fields = ['firstName', 'lastName', 'username', 'password', 'securityQuestion', 'securityAnswer', 'email', 'phone', 'org', 'companyID', 'zip', 'billing', 'verification'];
+        if (!check_ver && empty_fields.indexOf('verification') < 0) {
+            empty_fields.push('verification code');
+        }
     } else if (role == 'regular') {
         fields = ['firstName', 'lastName', 'username', 'password', 'securityQuestion', 'securityAnswer', 'phone', 'org', 'companyID'];
     } else {
@@ -204,6 +210,19 @@ function checkFields() {
             }
             empty_fields.push(fieldname);
         }
+    }
+    
+    if (!check_email && empty_fields.indexOf('email') < 0) {
+        empty_fields.push('email')
+    }
+    if (!check_phone && empty_fields.indexOf('phone') < 0) {
+        empty_fields.push('phone');
+    }
+    if (!check_username && empty_fields.indexOf('username') < 0) {
+        empty_fields.push('username');
+    }
+    if (!check_companyID && empty_fields.indexOf('company ID') < 0) {
+        empty_fields.push('company ID');
     }
     
     if (document.forms['create-account-form']['phone'].value.length < 9 && empty_fields.indexOf('phone') < 0) {

@@ -103,6 +103,7 @@ include_once("analyticstracking.php");
     			<div class="input-group center signUpInput">
     				<label for="companyID" class="white-text"><p class="asterix">* </p>Company ID:</label>
     				<input type="text" name="companyID" id="companyID" class="form-control" placeholder="" required="true" onkeyup="someSymbols(this)"/>
+    				<div id="companyID-taken" class="vermillion-color"><small><img src="media/red-x.png" height="20" width="20" /> Company ID is taken!</small></div>
     			</div>
     			<div class="input-group center signUpInput zipDiv">
     				<label for="zip" class="white-text"><p class="asterix">* </p>Zip Code:</label>
