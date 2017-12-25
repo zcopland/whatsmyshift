@@ -1,6 +1,7 @@
 var us_taken = $('#username-taken');
 var us_allowed = $('#username-allowed');
 var us_short = $('#username-short');
+var pass_short = $('#password-short');
 var sbtn = $('#submitbtn');
 var role = $('#role').val();
 var form = $('#restOfForm');
@@ -22,6 +23,7 @@ var check_ver = false;
 var check_companyID = false;
 var fields = [];
 var empty_fields = [];
+var pass_okay = false;
 companyID_taken.hide();
 phone_error.hide();
 email_error.hide();
@@ -30,6 +32,7 @@ us_allowed.hide();
 us_taken.hide();
 us_short.hide();
 ver_not.hide();
+pass_short.hide();
 $('#username').focusout(function() {
 	var username = document.getElementById('username').value;
 	if (username.length > 4) {
@@ -64,8 +67,8 @@ $('#email').focusout(function() {
     var email = $(this).val();
     if (email.length > 5) {
         $.ajax({type: "POST", url: "db/check-phone-email.php", data: {email: email}, success: function(result){
-            if (result == true) {
-                email_error.hide()
+            if (result) {
+                email_error.hide();
                 check_email = true;
             } else {
                 check_email = false;
@@ -78,7 +81,7 @@ $('#phone').focusout(function() {
     var phone = $(this).val();
     if (phone.length > 8) {
         $.ajax({type: "POST", url: "db/check-phone-email.php", data: {phone: phone}, success: function(result){
-            if (result == true) {
+            if (result) {
                 phone_error.hide();
                 check_phone = true;
             } else {
@@ -119,9 +122,9 @@ $('#verification').focusout(function(){
 	var code = $(this).val();
 	var username = document.getElementById('username').value;
 	if (username_status) {
-    	if (code.length >= 7 && ver_match == false) {
+    	if (code.length >= 7 && ver_match === false) {
         	$.ajax({type: "POST", url: "db/check-code.php", data: {username: username, code: code}, success: function(result){
-                if (result == true) {
+                if (result) {
                     check_ver = true;
                     ver_not.hide();
                     ver.prop('readonly', true);
@@ -141,31 +144,48 @@ $('#verification').focusout(function(){
 	}
 });
 
+$('#password').focusout(function() {
+    var password = $(this).val();
+    if (password.length <= 5 && password.length > 0) {
+        pass_short.show();
+        pass_okay = false;
+    } else if (password.length < 1) {
+        pass_short.hide();
+        pass_okay = false;
+    } else {
+        pass_short.hide();
+        pass_okay = true;
+    }
+});
+
 $('#companyID').focusout(function(){
 	var companyID = $(this).val();
 	var username = document.getElementById('username').value;
-	if (username_status) {
-    	if (companyID.length >= 1) {
-        	$.ajax({type: "POST", url: "db/check-company-id.php", data: {companyID: companyID}, success: function(result){
-                if (result == true) {
-                    companyID_taken.hide();
-                    check_companyID = true;
-                } else {
-                    companyID_taken.show();
-                    check_companyID = false;
-                }
-            }});
+	if (role == 'admin') {
+    	if (username_status) {
+        	if (companyID.length > 1) {
+            	$.ajax({type: "POST", url: "db/check-company-id.php", data: {companyID: companyID}, success: function(result){
+                    if (result) {
+                        companyID_taken.hide();
+                        check_companyID = true;
+                    } else {
+                        companyID_taken.show();
+                        check_companyID = false;
+                    }
+                }});
+        	}
+    	} else {
+        	$('#modal-text').html('Please ensure you have an approved username first!');
+            $("#myModal").modal();
     	}
-	} else {
-    	$('#modal-text').html('Please ensure you have an approved username first!');
-        $("#myModal").modal();
-	}
-	if (role == 'regular') {
+	} else if (role == 'regular') {
     	$.ajax({type: "POST", url: "db/find-org.php", data: {companyID: companyID}, success: function(result){
-            if (result != false) {
+            if (result != 'Not found!') {
+                check_companyID = true;
                 $('#org').val(result);
             } else {
-                
+                check_companyID = false;
+                $('#org').val(result);
             }
         }});
 	}
@@ -187,7 +207,7 @@ function checkFields() {
     
     for (i = 0; i < fields.length; i++) {
         fieldname = fields[i];
-        if (document.forms['create-account-form'][fieldname].value == "") {
+        if (document.forms['create-account-form'][fieldname].value === "") {
             switch (fieldname) {
                 case 'firstName':
                     fieldname = 'first name';
@@ -212,8 +232,8 @@ function checkFields() {
         }
     }
     
-    if (!check_email && empty_fields.indexOf('email') < 0) {
-        empty_fields.push('email')
+    if (!check_email && empty_fields.indexOf('email') < 0 && email.length > 5) {
+        empty_fields.push('email');
     }
     if (!check_phone && empty_fields.indexOf('phone') < 0) {
         empty_fields.push('phone');
@@ -223,6 +243,9 @@ function checkFields() {
     }
     if (!check_companyID && empty_fields.indexOf('company ID') < 0) {
         empty_fields.push('company ID');
+    }
+    if (!pass_okay && empty_fields.indexOf('password') < 0) {
+        empty_fields.push('password');
     }
     
     if (document.forms['create-account-form']['phone'].value.length < 9 && empty_fields.indexOf('phone') < 0) {
@@ -236,7 +259,7 @@ function checkFields() {
     }
 }
 
-function validate() {
+function validate() {;
     if (checkFields()) {
         return true;
     } else {
