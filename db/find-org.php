@@ -11,7 +11,7 @@ $row = mysqli_fetch_assoc($result);
 if (isset($row)) {
     echo $row['organization'];
 } else {
-    echo "Failed to process this request. Please go back and try to submit again.";
+    echo "Not found!";
 }
 
 
