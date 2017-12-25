@@ -180,7 +180,7 @@ TEXT;
     public function getAllEmployees($conn) {
         $allEmployees = [];
         // $allEmployees['Full Name'] = "username"
-        $query = "SELECT * FROM `employees`;";
+        $query = "SELECT * FROM `employees` ORDER BY `lastName`;";
         $result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             $fullName = "{$row['firstName']} {$row['lastName']}";
