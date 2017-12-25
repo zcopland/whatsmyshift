@@ -177,6 +177,17 @@ TEXT;
         $html .= "</tr></table></div>";
         return $html;
     }
+    public function getAllEmployees($conn) {
+        $allEmployees = [];
+        // $allEmployees['Full Name'] = "username"
+        $query = "SELECT * FROM `employees`;";
+        $result = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $fullName = "{$row['firstName']} {$row['lastName']}";
+            $allEmployees[$fullName] = $row['username'];
+        }
+        return $allEmployees;
+    }
 }
 
 ?>
