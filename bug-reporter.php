@@ -6,6 +6,7 @@ include_once("analyticstracking.php");
     <title>Bug Reporter</title>
     <?php include 'includes/header.php'; ?>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
       <?php include 'includes/navbar.php'; ?>
@@ -46,6 +47,7 @@ include_once("analyticstracking.php");
     			<textarea id="descption" name="description" cols="35" rows="8" required="true"></textarea>
     		</div>
     		<br/>
+    		<?php //include 'includes/reCAPTCHA.php'; ?>
     		<button type="submit" class="btn btn-med btn-success">Send</button>
         </form>
         <br/>
