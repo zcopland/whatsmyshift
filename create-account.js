@@ -259,7 +259,7 @@ function checkFields() {
     }
 }
 
-function validate() {;
+function validate() {
     if (checkFields()) {
         return true;
     } else {
