@@ -47,7 +47,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 	<title>What's My Shift</title>
 	<?php include 'includes/header.php'; ?>
 	<script type="text/javascript" src="script.js"></script>
-	<link rel="stylesheet" type="text/css" href="snow.css">
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
