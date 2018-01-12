@@ -16,6 +16,11 @@ use Twilio\Rest\Client;
 //PHPMailer requirements
 require 'PHPMailer/PHPMailerAutoload.php';
 include_once("analyticstracking.php");
+include "includes/recaptchalib.php";
+
+if ($recap_error) {
+    exit();
+}
 
 
 /* Globals */

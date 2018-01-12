@@ -26,6 +26,7 @@ echo <<<HTML
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- End of Bootsrap -->
     <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
     <div class="container">
@@ -66,6 +67,9 @@ echo <<<HTML
         </div>
         <div id="root-alert" class="vermillion-color"><small>Root password is incorrect!</small></div>
         <br/>
+HTML;
+//include 'includes/reCAPTCHA.php';
+echo <<<HTML
         <button name="submit" value="submit" type="submit" id="submitbtn" class="btn btn-success btn-md">Update</button>
         </form>
     </div>

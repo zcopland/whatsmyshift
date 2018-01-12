@@ -12,6 +12,7 @@ include_once("analyticstracking.php");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- End of Bootsrap -->
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
       <div class="container">
@@ -38,6 +39,7 @@ include_once("analyticstracking.php");
     			<textarea id="inquiry" name="inquiry" cols="35" rows="8"></textarea>
     		</div>
     		<br/>
+    		<?php //include 'includes/reCAPTCHA.php'; ?>
     		<button type="submit" class="btn btn-med btn-success">Send</button>
         </form>
         <br/>

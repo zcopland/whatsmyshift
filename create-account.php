@@ -11,6 +11,7 @@ include_once("analyticstracking.php");
 <head>
 	<title>Create Account</title>
 	<?php include 'includes/header.php'; ?>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
     <script src="characterHandling.js"></script>
@@ -130,7 +131,8 @@ include_once("analyticstracking.php");
     			<small class="asterix">* fields are required.</small>
     			<br/>
     			<small class="black-color">By creating an account, you agree to the <a href="terms-and-conditions.html">Terms and Conditions</a>.</small>
-    			<br/><br/>
+    			<br/>
+                <?php //include 'includes/reCAPTCHA.php'; ?><br/>
             	<button name="submit" value="submit" type="submit" id="submitbtn" class="btn btn-success btn-md">Create</button>
 			</div>
 		</form>

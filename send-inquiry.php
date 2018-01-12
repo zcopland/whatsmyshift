@@ -4,6 +4,11 @@ date_default_timezone_set('America/New_York');
 require_once 'info/Information.php';
 //PHPMailer requirements
 require 'PHPMailer/PHPMailerAutoload.php';
+include "includes/recaptchalib.php";
+
+if ($recap_error) {
+    exit();
+}
 
 /* Variables */
 $information = new Information();

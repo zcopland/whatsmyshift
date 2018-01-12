@@ -32,6 +32,7 @@ TEXT;
 <head>
 	<title>Root Notification Blast</title>
 	<?php include 'includes/header.php'; ?>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 	<div class="container">
@@ -70,7 +71,8 @@ TEXT;
 			  <label><input type="radio" name="how-update" class="how-update" value="email" id="email">Email only</label>
 			</div>
 			<input type="hidden" name="role" value="root"/>
-			<br/><br/>
+			<br/>
+			<?php //include 'includes/reCAPTCHA.php'; ?><br/>
         	<button name="submit" value="submit" type="submit" class="btn btn-success btn-lg">Notify!</button>
 		</form><br/>
 		<button class="btn vermillion-bg btn-md pull-right white-text" id="back">Back</button>

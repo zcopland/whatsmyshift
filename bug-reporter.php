@@ -1,5 +1,6 @@
 <?php
 include_once("analyticstracking.php");
+require_once "recaptchalib.php";
 ?>
 <!DOCTYPE html>
   <head>
