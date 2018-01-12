@@ -128,7 +128,7 @@ if ($isAdmin) {
 			<h4 class="drag-label">Drag a new shift</h4>
 			<div class='fc-event'>New Shift</div>
 			<p>
-				<img src="media/trash.png" style="width:43px;height:55px;" id="trash" alt="">
+				<img src="media/trash.png" title="Drag a shift and drop to delete" style="width:43px;height:55px;" id="trash" alt="">
 			</p><br/><br/>
 			<div class="notifyDiv"><button class="btn vermillion-bg text-left notify"><a class="white-text" href="send-text.php">Notify</a></button></div>
 			<div class="notifyDiv"><button class="btn vermillion-bg text-left notify"><a class="white-text" href="admin-panel.php">Panel</a></button></div><br/>
@@ -237,6 +237,26 @@ $(document).ready(function() {
         }
     });
   });
+/*
+  var timeoutId;
+  $('#trash').hover(function() {
+      if (!timeoutId) {
+            timeoutId = window.setTimeout(function() {
+                timeoutId = null;
+                $('[data-toggle="tooltip"]').tooltip(); 
+           }, 2000);
+        }
+    },
+    function () {
+        if (timeoutId) {
+            window.clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+        else {
+           //do nothing
+        }
+  });
+*/
 });
 function logout() {
     window.location.href = "logout.php";
