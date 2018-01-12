@@ -35,6 +35,10 @@ include_once("analyticstracking.php");
             <h5>Your administrator has the ability to text or email you once they make changes to your schedule or if they have any announcements to make.</h5>
         </div>
         <div class="row">
+            <h4><b>How do I delete a shift?</b></h4>
+            <h5>Click on the shift and drag it and drop it over the trash bin on the far left of the page.</h5>
+        </div>
+        <div class="row">
             <h4><b>Does it cost any money to sign up as an employee?</b></h4>
             <h5>Signing up as an employee is 100% free.</h5>
         </div>
