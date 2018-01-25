@@ -32,6 +32,7 @@ $(document).ready(function() {
       x: -1,
       y: -1
   };
+    //track the user's mouse
     jQuery(document).on("mousemove", function (event) {
         currentMousePos.x = event.pageX;
         currentMousePos.y = event.pageY;
@@ -88,7 +89,7 @@ $(document).ready(function() {
       droppable: true, 
       slotDuration: '00:30:00',
       businessHours: {
-        start: '6:00',
+        start: '4:00',
         end:   '23:30',
         dow: [0, 1, 2, 3, 4, 5, 6]
       },
@@ -140,22 +141,21 @@ $(document).ready(function() {
                   event.title = title;
                   //console.log('type=changetitle&title='+title+'&eventid='+event.id);
                   $.ajax({
-                url: 'db/process.php',
-                data: 'type=changetitle&title='+title+'&eventid='+event.id,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response){  
-                  if(response.status == 'success') {
-                      $('#calendar').fullCalendar('updateEvent',event);
-                  }              
-                },
-                error: function(e){
-                  alert('Error processing your request: '+e.responseText);
+                    url: 'db/process.php',
+                    data: 'type=changetitle&title='+title+'&eventid='+event.id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response){  
+                      if(response.status == 'success') {
+                          $('#calendar').fullCalendar('updateEvent',event);
+                      }              
+                    },
+                    error: function(e){
+                      alert('Error processing your request: '+e.responseText);
+                    }
+                  });
                 }
-              });
-              }
-          }
-              
+          }  
       },
       eventResize: function(event, delta, revertFunc) {
         console.log(event);
