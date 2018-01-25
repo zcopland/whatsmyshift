@@ -76,11 +76,11 @@ $date = (String) date("Y-m-d");
 	<title><?php echo $organization; ?> Schedule</title>
 	<?php include 'includes/header.php'; ?>
     <!-- Start of FullCalendar -->
-    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css'/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src='fullcalendar/moment.js'></script>
-	<script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js'></script>
 	<!-- End of FullCalendar -->
 	<script type="text/javascript" src="script.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
@@ -88,6 +88,7 @@ $date = (String) date("Y-m-d");
 	<link rel="stylesheet" type="text/css" href="main-styles.css">
 </head>
 <body>
+    <!--button id="refresh-btn" onclick="location.reload(true);">Refresh</button-->
 <?php if ($underConstruction): ?>
     <!-------- SITE UNDER CONSTRUCTION ALERT -------->
     <div class="alert alert-warning alert-dismissable">
@@ -180,6 +181,7 @@ HTML;
 } 
 ?>
 <!-- END OF PHP FOR ADMIN STUFF -->
+<br/>
 <button class="btn vermillion-bg" id="logout" onclick="logout();">Logout</button>
 <footer class="text-center">Copyright Zach Copland <?php echo date("Y"); ?>. Version: <?php echo $VERSION; ?></footer>
 <script type="text/javascript">
