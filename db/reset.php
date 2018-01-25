@@ -5,11 +5,9 @@ include 'dbh_readOnly.php';
 $username = $_POST['username'];
 $password1 = $_POST['password1'];
 $password2 = $_POST['password2'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
 
 if ($password1 == $password2) {
-	$sql = "SELECT * FROM `employees` WHERE `username`='{$username}' AND `email`='{$email}' AND `phone`='{$phone}';";
+	$sql = "SELECT * FROM `employees` WHERE `username`='{$username}';";
     $result = mysqli_query($conn_readOnly, $sql);
     $row = mysqli_fetch_assoc($result);
     
@@ -33,7 +31,7 @@ if ($password1 == $password2) {
         
     } else if ($row <= 0) {
         /* could not find email or phone */
-        showAlert('Phone number or email address is incorrect.');
+        showAlert('Could not find account.');
 		header("Location: ../reset-pass.php");
     }
 
