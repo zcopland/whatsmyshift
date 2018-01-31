@@ -14,6 +14,7 @@ if ($result) {
     $count = $row['organizationCount'] - 1;
     $sql = "UPDATE `companies` SET organizationCount={$count} WHERE companyID='{$companyID}';";
     $result2 = mysqli_query($conn_root, $sql);
+    echo true;
 } else {
     echo $sql;
 }
