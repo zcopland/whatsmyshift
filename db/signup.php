@@ -3,11 +3,13 @@ include 'dbh_addOnly.php';
 include 'dbh_readOnly.php';
 include 'config.php';
 date_default_timezone_set('America/New_York');
-include "../includes/recaptchalib.php";
+//include "../includes/recaptchalib.php";
 
+/*
 if ($recap_error) {
     exit();
 }
+*/
 
 $firstName = $_POST['firstName'];
 $firstName = sanitize($firstName);
