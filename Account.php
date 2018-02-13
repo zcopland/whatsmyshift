@@ -136,7 +136,7 @@ TEXT;
     public function getNotificationTable($companyID, $conn) {
         $query = "SELECT * FROM `notifications` WHERE companyID='{$companyID}';";
         $result = mysqli_query($conn, $query);
-        $html = "<div id=\"notificationTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Sent By</th><th>Text(s) Sent</th><th>Email(s) Sent</th><th>Date Sent</th></tr>";
+        $html = "<div id=\"notificationTable\" class=\"container pre-scrollable table-responsive\"><table class='table table-hover'><tr><th>Sent By</th><th>Text(s) Sent</th><th>Email(s) Sent</th><th>Date Sent</th></tr>";
         while ($row = mysqli_fetch_assoc($result)) {
     		$html .= <<<TEXT
     <tr>
