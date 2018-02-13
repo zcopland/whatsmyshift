@@ -48,7 +48,7 @@ HTML;
     echo <<<HTML
     </table>
     <div class="">
-        <button class="btn btn-sm pull-right"><a href="index.php" class="white-text">Back</a></button>
+        <button class="btn btn-sm pull-right vermillion-bg"><a href="index.php" class="white-text">Back</a></button>
         <footer class="text-center">Copyright Zach Copland {$date}. Version: {$currentVersion}</footer>
     </div>
     </div>
