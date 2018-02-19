@@ -24,6 +24,7 @@ var check_companyID = false;
 var fields = [];
 var empty_fields = [];
 var pass_okay = false;
+var status_okay = false;
 companyID_taken.hide();
 phone_error.hide();
 email_error.hide();
@@ -159,7 +160,7 @@ $('#password').focusout(function() {
 });
 
 $('#companyID').focusout(function(){
-	var companyID = $(this).val();
+	var companyID = $('#companyID').val();
 	var username = document.getElementById('username').value;
 	if (role == 'admin') {
     	if (username_status) {
@@ -183,6 +184,7 @@ $('#companyID').focusout(function(){
             if (result != 'Not found!') {
                 check_companyID = true;
                 $('#org').val(result);
+                checkBlacklist();
             } else {
                 check_companyID = false;
                 $('#org').val(result);
@@ -193,6 +195,7 @@ $('#companyID').focusout(function(){
 
 function checkFields() {
     var fieldname;
+    checkBlacklist();
     empty_fields = [];
     if (role == 'admin') {
         fields = ['firstName', 'lastName', 'username', 'password', 'securityQuestion', 'securityAnswer', 'email', 'phone', 'org', 'companyID', 'zip', 'billing', 'verification'];
@@ -259,10 +262,25 @@ function checkFields() {
     }
 }
 
-function validate() {
-    if (checkFields()) {
-        return true;
+
+function checkBlacklist() {
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var companyID = $('#companyID').val();
+    if (firstName.length > 2 && lastName.length > 2 && companyID.length > 1) {
+        $.ajax({type: "POST", url: "db/blacklist-search.php", data: {companyID: companyID, firstName: firstName, lastName: lastName}, success: function(result){
+            status_okay = result;
+        }});
     } else {
+        status_okay = false;
+    }
+}
+
+
+function validate() {
+    if (status_okay === true && checkFields() === true) {
+        return true;
+    } else if (!checkFields()) {
         var message = "The following field(s) must be filled out: ";
         if (empty_fields.length == 1) {
             message += empty_fields[0] + '.';
@@ -278,6 +296,10 @@ function validate() {
             }
         }
         $('#modal-text').html(message);
+        $("#myModal").modal();
+        return false;
+    } else if (!status_okay) {
+        $('#modal-text').html('You are unable to create an account with this company.');
         $("#myModal").modal();
         return false;
     }

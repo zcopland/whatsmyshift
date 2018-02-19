@@ -51,8 +51,12 @@ include_once("analyticstracking.php");
             <h5>To use this service, all users must be 16 years or older, per our <a href="terms-and-conditions.html">Terms and Conditions</a>.</h5>
         </div>
         <div class="row">
-            <h4><b>How do I see my employee login times?</b></h4>
+            <h4><b>How do I see my employee's login times?</b></h4>
             <h5>All login attempts are stored in a database. To view specific login attempts, contact the <a href="mailto:zcopland16@gmail.com?subject=WhatsMyShift Login Attempts">site administrator</a>.</h5>
+        </div>
+        <div class="row">
+            <h4><b>How do I prevent an (ex) employee from creating an account?</b></h4>
+            <h5>Employers are able to blacklist a specific user from creating an account with their organization. To submit a blacklist, click <a href="blacklist-request.php">here</a>.</h5>
         </div>
     </div>
     <script type="text/javascript"></script>

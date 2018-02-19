@@ -135,12 +135,16 @@ echo <<<HTML
         {$notificationTable}
         {$loginTable}
     <button id="back" class="btn vermillion-bg btn-md pull-right">Back</button>
+    <button id="blacklist" class="btn vermillion-bg btn-md pull-left">Blacklist</button>
     </div>
     <script>
         $(document).ready(function() {
             $('#saved-small').hide();
             $('#back').click(function() {
                 window.history.back(-1);
+            });
+            $('#blacklist').click(function() {
+                window.location.href = "blacklist-request.php";
             });
             $('#weatherShow').click(function() {
               var val;
