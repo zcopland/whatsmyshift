@@ -1,10 +1,12 @@
 <?php
 include 'dbh_addOnly.php';
-include "../includes/recaptchalib.php";
+//include "../includes/recaptchalib.php";
 
+/*
 if ($recap_error) {
     exit();
 }
+*/
 
 /* Globals */
 $username = $_POST['user-list'];
