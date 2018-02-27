@@ -64,6 +64,16 @@ $('#username').focusout(function() {
         us_short.show();
 	}
 });
+$.ajax({
+    type: "POST",
+    url: "db/check-ip.php",
+    data: {ip: userip},
+    success: function(result){
+        if (!result) {
+            window.location.href = "logout.php";
+        }
+    }
+});
 $('#email').focusout(function() {
     var email = $(this).val();
     if (email.length > 5) {

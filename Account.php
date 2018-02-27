@@ -188,6 +188,17 @@ TEXT;
         }
         return $allEmployees;
     }
+    public function getBlacklistIPs($conn) {
+        $ips = [];
+        $query = "SELECT * FROM `blacklist`;";
+        $result = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            if (!empty($row['ip'])) {
+                array_push($ips, $row['ip']);
+            }
+        }
+        return $ips;
+    }
 }
 
 ?>

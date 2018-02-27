@@ -86,6 +86,8 @@ $date = (String) date("Y-m-d");
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" type="text/css" href="main-styles.css">
+	<script type="text/javascript">var userip;</script>
+	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 </head>
 <body>
     <!--button id="refresh-btn" onclick="location.reload(true);">Refresh</button-->
@@ -239,6 +241,16 @@ $(document).ready(function() {
         }
     });
   });
+  $.ajax({
+        type: "POST",
+        url: "db/check-ip.php",
+        data: {ip: userip},
+        success: function(result){
+            if (!result) {
+                window.location.href = "logout.php";
+            }
+        }
+    });
 /*
   var timeoutId;
   $('#trash').hover(function() {

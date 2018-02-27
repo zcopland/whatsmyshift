@@ -12,6 +12,8 @@ include_once("analyticstracking.php");
 	<title>Create Account</title>
 	<?php include 'includes/header.php'; ?>
     <!--script src='https://www.google.com/recaptcha/api.js'></script-->
+    <script type="text/javascript">var userip;</script>
+	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 </head>
 <body>
     <script src="characterHandling.js"></script>
