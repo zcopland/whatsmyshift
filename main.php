@@ -23,6 +23,7 @@ $securityAnswer = $Account->getSecurityAnswer();
 $zip = $Account->getZip($companyID, $conn_readOnly);
 $defaultCalView = $Account->getDefaultCalView($companyID, $conn_readOnly);
 $weatherShow = $Account->getWeatherShow($companyID ,$conn_readOnly);
+$booleanAgreeTC = $Account->getBooleanAgreeTC($conn_readOnly);
 
 //if username is not set, send them back to login page
 if (!isset($_SESSION['username'])  || empty($_SESSION['username'])) {
@@ -77,7 +78,6 @@ $date = (String) date("Y-m-d");
 	<?php include 'includes/header.php'; ?>
     <!-- Start of FullCalendar -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css'/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src='fullcalendar/moment.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js'></script>
@@ -100,6 +100,28 @@ $date = (String) date("Y-m-d");
     <script>alert("Warning! Site is currently being worked on.");</script>
     <!-------- SITE UNDER CONSTRUCTION ALERT -------->
 <?php endif; ?>
+    <div class="container">
+    <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title vermillion-color">Attention</h4>
+            </div>
+            <div class="modal-body">
+              <p id="modal-text" class="vermillion-color">The <a href="terms-and-conditions.html">Terms and Conditions</a> have been updated. Please accept to access your schedule.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="dismiss">Dismiss</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" id="accept">Accept</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+      <!-- /Modal-->
 
 <!-- CALENDAR DIV -->
 	<?php if (isset($_SESSION['organization'])) { ?>
@@ -123,6 +145,7 @@ echo <<<HTML
 <input id="weatherShow" type="hidden" value="{$weatherShow}" />
 <input id="defaultCalView" type="hidden" value="{$defaultCalView}" />
 <input id='date' type='hidden' value='{$date}'/>
+<input id='booleanAgreeTC' type='hidden' value='{$booleanAgreeTC}'/>
 HTML;
 
 if ($isAdmin) {
@@ -190,6 +213,7 @@ HTML;
 $(document).ready(function() {
   $('#employee-list').hide();
   var viewportWidth = $(window).width();
+  var booleanAgreeTC = $('#booleanAgreeTC').val();
   if (viewportWidth <= 1279) {
       $('#admin-panel-button-mobile').show();
       $('#notify-button-mobile').show();
@@ -251,26 +275,27 @@ $(document).ready(function() {
             }
         }
     });
-/*
-  var timeoutId;
-  $('#trash').hover(function() {
-      if (!timeoutId) {
-            timeoutId = window.setTimeout(function() {
-                timeoutId = null;
-                $('[data-toggle="tooltip"]').tooltip(); 
-           }, 2000);
-        }
-    },
-    function () {
-        if (timeoutId) {
-            window.clearTimeout(timeoutId);
-            timeoutId = null;
-        }
-        else {
-           //do nothing
-        }
+  if (booleanAgreeTC == 0) {
+      $("#myModal").modal();
+  }
+  $('#myModal .modal-footer button').on('click', function(event) {
+      var $button = $(event.target);
+      $(this).closest('.modal').one('hidden.bs.modal', function() {
+        var username = $('#username').val();
+        if ($button[0].id == 'accept') {
+            $.ajax({
+                type: "POST",
+                url: "db/updateAgreeTC.php",
+                data: {username: username},
+                success: function(result){
+                    if (!result) {
+                        logout();
+                    }
+                }
+            });
+        } else { logout(); }
+      });
   });
-*/
 });
 function logout() {
     window.location.href = "logout.php";

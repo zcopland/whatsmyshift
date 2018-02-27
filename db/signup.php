@@ -47,7 +47,7 @@ function sanitize($dirty) {
 
 function insertIntoEmployees() {
     global $firstName, $lastName, $username, $pwd, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly, $securityAnswer, $securityQuestion;
-    $sql = "INSERT INTO employees(firstName, lastName, username, password, email, phone, organization, companyID, isAdmin, securityQuestion, securityAnswer, lastLogin) VALUES ('{$firstName}', '{$lastName}', '{$username}', '{$pwd}', '{$email}', '{$phone}', '{$org}', '{$companyID}', {$isAdmin}, '{$securityQuestion}', '{$securityAnswer}', '{$date}')";
+    $sql = "INSERT INTO employees(firstName, lastName, username, password, email, phone, organization, companyID, isAdmin, securityQuestion, securityAnswer, booleanAgreeTC, dateAgreeTC, lastLogin) VALUES ('{$firstName}', '{$lastName}', '{$username}', '{$pwd}', '{$email}', '{$phone}', '{$org}', '{$companyID}', {$isAdmin}, '{$securityQuestion}', '{$securityAnswer}', 1, '{$date}', '{$date}')";
     $result = mysqli_query($conn_addOnly, $sql);
     if ($result) {
         return true;

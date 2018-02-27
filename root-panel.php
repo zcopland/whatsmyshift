@@ -93,6 +93,17 @@ echo <<<HTML
     <div class="container">
         <h1 id="panel" class="vermillion-color">Root Panel</h1><hr/>
         <div class="row">
+            <h2>Actions</h2>
+        </div><br/>
+        <div class="row">
+            <div class="col-md-3">
+                <button id="notify" class="btn vermillion-bg btn-md">Notify</button>
+            </div>
+            <div class="col-md-3">
+                <button id="resetTC" class="btn vermillion-bg btn-md">Reset TC</button>
+            </div>
+        </div>
+        <div class="row">
             <h2>Full Employee Database</h2>
         </div><br/>
         <table class="table">
@@ -139,7 +150,6 @@ echo <<<HTML
         </table>
     </div>
     <button id="back" class="btn vermillion-bg btn-md pull-right">Back</button>
-    <button id="notify" class="btn vermillion-bg btn-md pull-left">Notify</button>
     <script>
         $(document).ready(function() {
             $('#back').click(function() {
@@ -147,6 +157,19 @@ echo <<<HTML
             });
             $('#notify').click(function() {
                 window.location.href = 'root-notification.php';
+            });
+            $('#resetTC').click(function() {
+                var temp = 0;
+                $.ajax({
+                    type: "POST",
+                    url: "db/resetAgreeTC.php",
+                    data: {temp: temp},
+                    success: function(result){
+                        if (!result) {
+                            alert(result);
+                        }
+                    }
+                });
             });
         });
     </script>

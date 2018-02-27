@@ -199,6 +199,10 @@ TEXT;
         }
         return $ips;
     }
+    
+    public function getBooleanAgreeTC($conn) {
+        return $this->row['booleanAgreeTC'];
+    }
 }
 
 ?>
