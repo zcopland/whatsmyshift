@@ -1,4 +1,9 @@
 <?php
+/*
+    123-count.php
+*/
+
+//Start the session, set the timezone, and include necessary files
 session_start();
 date_default_timezone_set('America/New_York');
 include 'db/dbh_addOnly.php';
@@ -68,7 +73,7 @@ echo <<<HTML
         <div id="root-alert" class="vermillion-color"><small>Root password is incorrect!</small></div>
         <br/>
 HTML;
-//include 'includes/reCAPTCHA.php';
+include 'includes/reCAPTCHA.php';
 echo <<<HTML
         <button name="submit" value="submit" type="submit" id="submitbtn" class="btn btn-success btn-md">Update</button>
         </form>
