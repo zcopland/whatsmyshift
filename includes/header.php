@@ -25,5 +25,8 @@ echo <<<HTML
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="What's My Shift allows companies to dynamically show employees their shifts with the ability to notify employees." />
+    <meta name="keywords" content="whats my shift, shift, what is my shift, schedule, scheduler" />
+    <meta name="robots" content="index,follow" />
 HTML;
 ?>
