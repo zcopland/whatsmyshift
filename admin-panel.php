@@ -1,4 +1,13 @@
 <?php
+/*
+    admin-panel.php
+    
+    This PHP file is used to display useful
+    information on the admin panel page and
+    uses the Account class.
+*/
+
+//Start session, set timezone, and include necessary files
 session_start();
 date_default_timezone_set('America/New_York');
 include 'db/dbh_readOnly.php';
@@ -30,19 +39,17 @@ if ($canViewLogins) {
 }
 
 
-//if username is not set, send them back to login page
+//If username is not set, send them back to login page
 if (!isset($isAdmin)  || empty($isAdmin)) {
     header('Location: index.php');
 }
 
+//If weatherShow show true, make the checkbox checked
 if ($weatherShow == 1) {
     $checked = 'checked';
 }
 
-//TODO - add functionality for deleting (or suspending) users ... maybe just reset their password or create an active/inactive boolean to DB
-
 echo <<<HTML
-
 <!DOCTYPE html>
   <head>
     <title>Admin Panel</title>
@@ -225,6 +232,5 @@ echo <<<HTML
     </script>
   </body>
 </html>
-
 HTML;
 ?>
