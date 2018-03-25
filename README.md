@@ -14,4 +14,4 @@ To become a tester and report issues with this application, please email [me](ma
 Any and all suggestions are welcome and encouraged.
 
 ## Copyright
-All rights reserved. Zach Wise-Copland. 2017.
+All rights reserved. Zach Wise-Copland. 2018.
