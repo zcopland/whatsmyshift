@@ -47,6 +47,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 	<title>What's My Shift</title>
 	<?php include 'includes/header.php'; ?>
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="characterHandling.js"></script>
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
@@ -80,7 +81,7 @@ HTML;
       <form method="POST" class="loginForm" action="db/login.php">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="username" type="text" class="form-control" name="username" placeholder="Username" autofocus="true" required="true">
+            <input id="username" type="text" class="form-control" name="username" placeholder="Username" autofocus="true" required="true" onkeyup="someSymbols(this)">
         </div><br/>
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>

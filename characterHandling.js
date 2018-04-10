@@ -1,11 +1,12 @@
 function lettersOnly(input) {
-    var regex = /[^a-z]/gi;
+    var regex = /[^a-z-]/gi;
     input.value = input.value.replace(regex, "");
 }
 function someSymbols(input) {
     // _ is allowed
     var regex = /[-!$%^&*()+|~=`{}\[\]:";'<>?@,.\/]/;
     input.value = input.value.replace(regex, "");
+    input.value = input.value.replace(/ /g, "_");
 }
 function orgSymbols(input) {
     // _ and . and , and ' are allowed
