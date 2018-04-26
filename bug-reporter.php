@@ -1,4 +1,13 @@
 <?php
+
+/*
+    bug-reporter.php
+    
+    This PHP file is used for the front-end 
+    for users to submit a bug or feature
+    request.
+*/
+
 include_once("analyticstracking.php");
 ?>
 <!DOCTYPE html>
@@ -72,6 +81,7 @@ include_once("analyticstracking.php");
       </div>
   </body>
   <script>
+      //Back button
       $(document).ready(function() {
             $('#back').click(function() {
                 window.history.back(-1);
