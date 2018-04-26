@@ -6,7 +6,9 @@ include 'dbh_readOnly.php';
 include 'dbh_addOnly.php';
 
 $username = $_POST['username'];
+$username = sanitize($username);
 $password = $_POST['password'];
+$password = sanitize($password);
 $companyID = '';
 $remember = '';
 $date = date("m/d/Y @ g:ia");
@@ -50,6 +52,10 @@ if (password_verify($password, $row['password'])) {
     $_SESSION['incorrect'] = true;
     $_SESSION['pass-alert-index'] = true;
     header("Location: ../index.php");
+}
+
+function sanitize($dirty) {
+    return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
 }
 
 /*
