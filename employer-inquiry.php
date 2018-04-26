@@ -1,4 +1,13 @@
 <?php
+
+/*
+    employer-inquiry.php
+    
+    This PHP file is used for the front-end 
+    for people to submit a query (email) for
+    more information about the services.
+*/
+
 include_once("analyticstracking.php");
 ?>
 <!DOCTYPE html>
@@ -47,6 +56,7 @@ include_once("analyticstracking.php");
       </div>
   </body>
   <script>
+      //Back button
       $(document).ready(function() {
             $('#back').click(function() {
                 window.history.back(-1);

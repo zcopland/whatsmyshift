@@ -1,4 +1,14 @@
 <?php
+
+/*
+    employer-info.php
+    
+    This PHP file is used for the front-end 
+    for potential admins/users of What's My
+    Shift, they are able to see pricing tiers
+    along with inquire about the services.
+*/
+
 include_once("analyticstracking.php");
 ?>
 <!DOCTYPE html>

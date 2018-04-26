@@ -1,3 +1,11 @@
+/*
+    create-account.js
+    
+    This JS file is used for the backend 
+    for the create-account page.
+*/
+
+/* Globals */
 var us_taken = $('#username-taken');
 var us_allowed = $('#username-allowed');
 var us_short = $('#username-short');
@@ -34,6 +42,8 @@ us_taken.hide();
 us_short.hide();
 ver_not.hide();
 pass_short.hide();
+
+//Username field has focused out, check their username
 $('#username').focusout(function() {
 	var username = document.getElementById('username').value;
 	if (username.length > 4) {
@@ -64,6 +74,7 @@ $('#username').focusout(function() {
         us_short.show();
 	}
 });
+//Check the IP of user with the blacklist DB
 $.ajax({
     type: "POST",
     url: "db/check-ip.php",
@@ -74,6 +85,7 @@ $.ajax({
         }
     }
 });
+//Email input has focused out, check to see if it exists
 $('#email').focusout(function() {
     var email = $(this).val();
     if (email.length > 5) {
@@ -88,6 +100,7 @@ $('#email').focusout(function() {
         }});
     }
 });
+//Phone input has focused out, check to see if it exists
 $('#phone').focusout(function() {
     var phone = $(this).val();
     if (phone.length > 8) {
@@ -102,6 +115,7 @@ $('#phone').focusout(function() {
         }});
     }
 });
+//Toggle b/w admin and regular user by showing/hiding fields
 $('input[type=radio][name=role]').change(function() {
 	form.show(1000);
     if (this.value == 'admin') {
@@ -129,6 +143,7 @@ $('input[type=radio][name=role]').change(function() {
         $('#billing').prop('required', false);
     }
 });
+//Check the verification code the user provided
 $('#verification').focusout(function(){
 	var code = $(this).val();
 	var username = document.getElementById('username').value;
@@ -154,7 +169,7 @@ $('#verification').focusout(function(){
         $("#myModal").modal();
 	}
 });
-
+//Check to make sure the password meets the requirements
 $('#password').focusout(function() {
     var password = $(this).val();
     if (password.length <= 5 && password.length > 0) {
@@ -168,7 +183,7 @@ $('#password').focusout(function() {
         pass_okay = true;
     }
 });
-
+//Check to see if the company ID exists or not
 $('#companyID').focusout(function(){
 	var companyID = $('#companyID').val();
 	var username = document.getElementById('username').value;
@@ -202,7 +217,7 @@ $('#companyID').focusout(function(){
         }});
 	}
 });
-
+//Check the fields for shortness or empties
 function checkFields() {
     var fieldname;
     checkBlacklist();
@@ -272,7 +287,7 @@ function checkFields() {
     }
 }
 
-
+//Check the blacklist for the user
 function checkBlacklist() {
     var firstName = $('#firstName').val();
     var lastName = $('#lastName').val();
@@ -286,7 +301,7 @@ function checkBlacklist() {
     }
 }
 
-
+//Validate the form, if okay then submit the form
 function validate() {
     if (status_okay === true && checkFields() === true) {
         return true;

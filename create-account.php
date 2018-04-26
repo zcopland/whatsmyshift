@@ -1,4 +1,12 @@
 <?php 
+
+/*
+    create-account.php
+    
+    This PHP file is used for the front-end 
+    to create an account.
+*/
+
 /* Site Under Construction Variable */
 $underConstruction = false;
 include_once("analyticstracking.php");
@@ -143,6 +151,7 @@ include_once("analyticstracking.php");
 	</div>
 	<script type="text/javascript" src='create-account.js'></script>
 	<script>
+    	//Back button
     	$(document).ready(function() {
             $('#back').click(function() {
                 window.history.back(-1);
