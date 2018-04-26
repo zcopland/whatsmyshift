@@ -1,4 +1,13 @@
 <?php
+
+/*
+    blacklist-request.php
+    
+    This PHP file is used for the front-end 
+    for admins to request a user to be 
+    blacklisted from the site.
+*/
+
 include_once("analyticstracking.php");
 ?>
 <!DOCTYPE html>

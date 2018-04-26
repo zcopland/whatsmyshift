@@ -1,3 +1,11 @@
+/*
+    blacklist-request.js
+    
+    This JS file is used for the backend 
+    for admins to request a user to be 
+    blacklisted from the site.
+*/
+
 //Variables
 var verified = false;
 var empty_fields = [];
@@ -13,7 +21,9 @@ $(window).keydown(function(event){
       return false;
     }
 });
+//Action for the verify button
 $('#verify').click(function() {
+    //Get values from inputs
     var username = $('#username').val();
     var password = $('#password').val();
     var companyID = $('#companyID').val();
@@ -57,6 +67,7 @@ $('#verify').click(function() {
             }
         }});
     } else {
+        //Let the user know which field(s) need to be filled out
         var message = "The following field(s) must be filled out: ";
         if (fields.length == 1) {
             message += fields[0] + '.';
@@ -71,11 +82,13 @@ $('#verify').click(function() {
                 }
             }
         }
+        //Display the modal
         $('#modal-text').html(message);
         $("#myModal").modal();
     }
 });
 
+//Check the fields for accuracy
 function checkFields() {
     var fieldname;
     emply_fields = [];
@@ -118,6 +131,7 @@ function checkFields() {
     }
 }
 
+//Validate the form
 function validate() {
     if (checkFields()) {
         if (confirm('Are you sure you want to block this user permanently from the site?')) {
@@ -140,6 +154,7 @@ function validate() {
                 }
             }
         }
+        //Show the modal
         $('#modal-text').html(message);
         $("#myModal").modal();
         return false;
