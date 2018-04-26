@@ -1,4 +1,12 @@
 <?php
+
+/*
+    logout.php
+    
+    This PHP file is used for the backend 
+    of logging the user out.
+*/
+
 session_start();
 $_SESSION['isAdmin'] = false;
 $_SESSION['mall'] = '';

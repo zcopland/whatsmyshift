@@ -1,4 +1,12 @@
 <?php
+
+/*
+    reset-pass.php
+    
+    This PHP file is used for the front-end 
+    for users to reset their password.
+*/
+
 session_start();
 include_once("analyticstracking.php");
 ?>
@@ -56,9 +64,11 @@ HTML;
 <script type="text/javascript">
     $(document).ready(function() {
         $('#resetButton').hide();
+        //Username input has focused out
         $('#username').focusout(function(){
             if ($(this).val().length >= 4) {
                 var username = document.getElementById('username').value;
+                //Check to make sure they can reset their password
                 $.ajax({type: "POST", url: "db/check-can-reset.php", data: {username: username}, success: function(result) {
                     if (result) {
                         //$('#resetButton').show();
@@ -68,6 +78,7 @@ HTML;
                         $('#alert-reset').show(400);
                     }
                 }});
+                //Get their security question
                 $.ajax({type: "POST", url: "db/check-security-info.php", data: {username: username, mode: 'question'}, success: function(result) {
                     $('#securityQuestion').text(result);
                 }, error: function() {
@@ -76,6 +87,7 @@ HTML;
                 });
             }
         });
+        //Check their security answer
         $('#securityAnswer').focusout(function(){
             var username = document.getElementById('username').value;
             if ($(this).val().length >= 2 && username.length >= 4) {
@@ -89,6 +101,7 @@ HTML;
                 }});
             }
         });
+        //Prevent the user from submitting the form on enter
         $('#resetForm').on('keyup keypress', function(e) {
           var keyCode = e.keyCode || e.which;
           if (keyCode === 13) { 

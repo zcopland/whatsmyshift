@@ -1,4 +1,14 @@
 <?php
+
+/*
+    create-security-question.php
+    
+    This PHP file is used for the front-end 
+    for users to create a security question
+    and answer if they have not already set
+    one up.
+*/
+
 session_start();
 include 'db/dbh_readOnly.php';
 include 'Account.php';
@@ -10,6 +20,7 @@ $securityQuestion = $Account->getSecurityQuestion();
 $securityAnswer = $Account->getSecurityAnswer();
 $username = $Account->getUsername();
 
+//Figure out if they already have one set in place
 if (!empty($securityQuestion) && !empty($securityAnswer)) {
     header('Location: main.php');
 } else if (!isset($username)) {

@@ -1,4 +1,13 @@
 <?php
+
+/*
+    main.php
+    
+    This PHP file is used for the front-end 
+    of the main page where users can see the
+    schedule.
+*/
+
 session_start();
 date_default_timezone_set('America/New_York');
 include 'db/dbh_readOnly.php';
@@ -29,7 +38,7 @@ $booleanAgreeTC = $Account->getBooleanAgreeTC($conn_readOnly);
 if (!isset($_SESSION['username'])  || empty($_SESSION['username'])) {
     header('Location: index.php');
 }
-
+//If root is trying to log in, redirect
 if ($username == 'root') {
     header('Location: root-panel.php');
 }
@@ -51,7 +60,7 @@ if ($val == 1) {
 } else if ($val == 0) {
     $underConstruction = false;
 }
-
+//Get the current version of site from DB
 $sql = "SELECT * FROM versions ORDER BY id DESC";
 $result = mysqli_query($conn_readOnly, $sql);
 $index = 0;
@@ -67,7 +76,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $date = (String) date("Y-m-d");
-
 
 ?>
 
@@ -147,7 +155,7 @@ echo <<<HTML
 <input id='date' type='hidden' value='{$date}'/>
 <input id='booleanAgreeTC' type='hidden' value='{$booleanAgreeTC}'/>
 HTML;
-
+//If the user is an admin, display editing tools
 if ($isAdmin) {
 	echo <<<HTML
 		<div id='external-events'>
@@ -221,6 +229,7 @@ $(document).ready(function() {
       $('#admin-panel-button-mobile').hide();
       $('#notify-button-mobile').hide();
   }
+  //Action for the deleting batch shifts button
   $('#deleteBtn').click(function() {
       var val = $('#delete-month').val();
       var companyID = $('#companyID').val();
@@ -275,6 +284,7 @@ $(document).ready(function() {
             }
         }
     });
+  //Check if the user has agreed to terms & conditions
   if (booleanAgreeTC == 0) {
       $("#myModal").modal();
   }
@@ -297,6 +307,7 @@ $(document).ready(function() {
       });
   });
 });
+//Logout button
 function logout() {
     window.location.href = "logout.php";
 }

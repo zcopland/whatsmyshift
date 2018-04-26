@@ -1,4 +1,12 @@
 <?php
+
+/*
+    faq.php
+    
+    This PHP file is used for the front-end 
+    of the Frequently Asked Question page.
+*/
+
 include_once("analyticstracking.php");
 ?>
 <!DOCTYPE html>

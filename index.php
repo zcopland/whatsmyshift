@@ -1,4 +1,13 @@
 <?php
+
+/*
+    index.php
+    
+    This PHP file is used for the front-end 
+    of the first page the user is directed
+    to, which is also the login page.
+*/
+
 session_start(); //starting session
 //setting variable to false until they log in
 $_SESSION['id'] = '';
@@ -26,6 +35,7 @@ if ($val == 1) {
     $underConstruction = false;
 }
 
+//Display the version of the site from DB
 $sql = "SELECT * FROM versions ORDER BY id DESC";
 $result = mysqli_query($conn_readOnly, $sql);
 $index = 0;
@@ -97,7 +107,6 @@ HTML;
       <br/><br/>
       <a href="reset-pass.php" class="vermillion-color">I forgot my password</a>
       <br/><br/>
-      <!--a href="terms-and-conditions.html" class="black-color">Terms and Conditions</a-->
       </div></div>
       <div id="footer">
           <p class="text-center">This site uses cookies to stay logged in.</p>
@@ -115,7 +124,6 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
   document.getElementById('password').value = '{$password}';
 </script>
 HTML;
-
 }
 ?>      
 </body>
