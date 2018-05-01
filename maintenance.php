@@ -1,3 +1,13 @@
+<?php
+/*
+    maintenance.php
+    
+    This PHP file is used for the front-end 
+    of displaying to the user that the site
+    is under construction for some 
+    maintenance.
+*/
+?>
 <!doctype html>
 <title>Site Maintenance</title>
 <?php include 'includes/header.php'; ?>
