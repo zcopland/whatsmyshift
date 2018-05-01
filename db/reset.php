@@ -3,8 +3,11 @@ session_start();
 include 'dbh_readOnly.php';
 
 $username = $_POST['username'];
+$username = sanitize($username);
 $password1 = $_POST['password1'];
+$password1 = sanitize($password1);
 $password2 = $_POST['password2'];
+$password2 = sanitize($password2);
 
 if ($password1 == $password2) {
 	$sql = "SELECT * FROM `employees` WHERE `username`='{$username}';";
@@ -43,6 +46,10 @@ if ($password1 == $password2) {
 
 function showAlert($message) {
     $_SESSION['alert-message'] = $message;
+}
+
+function sanitize($dirty) {
+    return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
 }
 
 ?>
