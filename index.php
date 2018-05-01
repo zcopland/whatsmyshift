@@ -30,7 +30,7 @@ while ($row = mysqli_fetch_assoc($result)) {
    $val =  $row['value'];
 }
 if ($val == 1) {
-    $underConstruction = true;
+    header('Location: maintenance.php');
 } else if ($val == 0) {
     $underConstruction = false;
 }
@@ -79,15 +79,6 @@ if (isset($_SESSION['pass-alert-index']) && $_SESSION['pass-alert-index'] == tru
 HTML;
 }
 ?>
-<!-- / Password Alert -->
-<?php if ($underConstruction): ?>
-    <!-------- SITE UNDER CONSTRUCTION ALERT -------->
-    <div class="alert alert-warning alert-dismissable">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Warning!</strong> Site is currently being worked on
-    </div>
-    <!-------- / SITE UNDER CONSTRUCTION ALERT -------->
-<?php endif; ?>
       <form method="POST" class="loginForm" action="db/login.php">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

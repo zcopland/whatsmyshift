@@ -56,7 +56,7 @@ while ($row = mysqli_fetch_assoc($result)) {
    $val = $row['value'];
 }
 if ($val == 1) {
-    $underConstruction = true;
+    header('Location: maintenance.php');
 } else if ($val == 0) {
     $underConstruction = false;
 }
@@ -98,16 +98,6 @@ $date = (String) date("Y-m-d");
 	<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 </head>
 <body>
-    <!--button id="refresh-btn" onclick="location.reload(true);">Refresh</button-->
-<?php if ($underConstruction): ?>
-    <!-------- SITE UNDER CONSTRUCTION ALERT -------->
-    <div class="alert alert-warning alert-dismissable">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Warning!</strong> Site is currently being worked on
-    </div>
-    <script>alert("Warning! Site is currently being worked on.");</script>
-    <!-------- SITE UNDER CONSTRUCTION ALERT -------->
-<?php endif; ?>
     <div class="container">
     <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
