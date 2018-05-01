@@ -40,7 +40,7 @@ HTML;
 		<form method="POST" id="resetForm" action="db/reset.php">
 			<div class="input-group">
 				<label for="username"><p class="asterix">* </p>Username:</label>
-				<input type="text" name="username" class="form-control" id="username" autofocus="true" required="true" />
+				<input type="text" name="username" class="form-control" id="username" autofocus="true" required="true" onkeyup="someSymbols(this)" />
 			</div><br/>
 			<div class="input-group">
 				<label for="answer"><p class="asterix">* </p>Question: <span id="securityQuestion"></span></label>
