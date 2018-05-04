@@ -123,7 +123,7 @@ $date = (String) date("Y-m-d");
 
 <!-- CALENDAR DIV -->
 	<?php if (isset($_SESSION['organization'])) { ?>
-    <h1 class="text-center"><?php echo $_SESSION['organization']; ?> Schedule</h1>
+    <h1 id="schedule-header" class="text-center"><?php echo $_SESSION['organization']; ?> Schedule</h1>
     <?php } ?>
     <div id='wrap'>
 <?php 

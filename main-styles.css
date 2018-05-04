@@ -114,6 +114,34 @@ input {
     }
 }
 
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .fc-view-container, .fc-view-container * {
+        visibility: visible;
+    }
+    .fc-center, .fc-center * {
+        visibility: visible;
+        color: blue;
+        position: absolute;
+        right: 1;
+        top: 0;
+    }
+    #schedule-header {
+        visibility: visible;
+        position: absolute;
+        top: 0;
+    }
+    .fc-view-container {
+        position: absolute;
+        left: 0;
+        top: 30;
+        transform: scale(0.9);
+    }
+    @page {size: landscape}
+}
+
 @media screen and (max-width: 1000px) {
     #external-events {
     	display: none;
