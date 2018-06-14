@@ -113,6 +113,7 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 <script>
   document.getElementById('username').value = '{$username}';
   document.getElementById('password').value = '{$password}';
+  document.getElementById('remember').checked = true;
 </script>
 HTML;
 }
