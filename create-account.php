@@ -102,7 +102,7 @@ include_once("analyticstracking.php");
     				<label for="email" class="black-color"><p class="asterix" id="asterix-email">* </p>Email:</label>
     				<input type="email" name="email" id="email" class="form-control" placeholder="john@doe.org" onkeyup="emailSymbols(this)"/>
     			</div>
-    			<div id="email-error" class="vermillion-color"><small>Email is already in use!</small></div>
+    			<div class="vermillion-color"><small id="email-error">Email is already in use!</small></div>
     			<div class="input-group center signUpInput">
     				<label for="phone" class="black-color"><p class="asterix">* </p>Phone Number:</label>
     				<input type="tel" name="phone" id="phone" class="form-control" placeholder="2075551234" required="true" onkeyup="numbersOnly(this)" maxlength="10"/>

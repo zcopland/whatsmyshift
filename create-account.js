@@ -88,13 +88,21 @@ $.ajax({
 //Email input has focused out, check to see if it exists
 $('#email').focusout(function() {
     var email = $(this).val();
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (email.length > 5) {
         $.ajax({type: "POST", url: "db/check-phone-email.php", data: {email: email}, success: function(result){
             if (result) {
                 email_error.hide();
-                check_email = true;
+                if (re.test(email)) {
+                    check_email = true;
+                } else {
+                    check_email = true;
+                    email_error.html("Please enter a valid email!");
+                    email_error.show();
+                }
             } else {
                 check_email = false;
+                email_error.html("Email is already in use!");
                 email_error.show();
             }
         }});
