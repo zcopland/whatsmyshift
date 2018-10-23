@@ -11,7 +11,7 @@ I was inspired to create this application because the old scheduling system was 
 
 ## Feedback
 To become a tester and report issues with this application, please email [me](mailto:zcopland16@gmail.com?Subject=WhatsMyShift%20App).
-Any and all suggestions are welcome and encouraged.
+Any and all suggestions are welcomed and encouraged.
 
 ## Copyright
 All rights reserved. Zach Wise-Copland. 2018.
