@@ -1,7 +1,7 @@
 # WhatsMyShift.com
 
 ## Background
-This web application is for scheduling employees to work. Employees with credentials can see live schedule changes and they can also be notified via text or email whenever a schedule change is made or if there is an announcement.
+This web application is for scheduling employees to work. Employees with credentials can see live schedule changes and they can also be notified via text or email whenever a schedule change is made or if there is an announcement. Employers can get an overview of their employees on the Admin Panel, which shows them all the information of the employees such as: name, phone number, email address, and even their last login date and time.
 
 ## Login
 In order to use this application, you must have the required login credentials. This ensures that only authorized individuals use this application.
