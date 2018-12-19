@@ -209,7 +209,7 @@ $(document).ready(function() {
     
     $.simpleWeather({
         woeid: '2357536', //2357536
-        zipcode: zip,
+        location: zip,
         unit: 'f',
         success: function(weather) {
           for (var i=0;i<weather.forecast.length;i++) {
