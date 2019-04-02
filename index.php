@@ -89,8 +89,7 @@ HTML;
             <input id="password" type="password" class="form-control" name="password" placeholder="Password" required="true">
         </div><br/>
         <div>
-          <input type="checkbox" name="remember" id="remember" value="1"/> <label for="remember" class="vermillion-color">Remember me</label>
-          <img src="media/new-gif.gif" alt="New!" id="new-gif" style="width:45px; height:45px;"/>
+          <input type="checkbox" name="remember" id="remember" value="1" checked="true"/> <label for="remember" class="vermillion-color">Remember me</label>
       </div><br/>
         <button name="submit" value="submit" type="submit" class="btn btn-primary btn-md">Log in</button>
       </form><br/>
@@ -101,7 +100,6 @@ HTML;
       </div></div>
       <div id="footer">
           <p class="text-center">This site uses cookies to stay logged in.</p>
-          <!--button class="btn btn-sm pull-right"><a href="versions.php" class="white-text">Versions</a></button-->
           <p class="text-center">Copyright Zach Copland <?php echo date("Y"); ?>. Version: <?php echo $currentVersion; ?></p>
       </div></div></div>
 <?php
