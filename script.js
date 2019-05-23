@@ -217,8 +217,14 @@ $(document).ready(function() {
 	    var days = result["daily"]["data"];
 	    for (var i = 0; i < days.length; i++) {
 		    text = parseWeather(days[i]["summary"]);
-		    //console.log(days[i]["summary"]);
-		    text = "~" + text + "~";
+		    var high = days[i]["temperatureHigh"];
+		    high = Math.round(high);
+		    if (text.length > 10) {
+    		        text = "~" + text + "~";
+		    } else {
+    		        text = "~" + text + " | High: " + high + "~";
+		    }
+		    
 		    date.setDate(date.getDate() + 1);
             today = date.toISOString();
             myEvent = {
