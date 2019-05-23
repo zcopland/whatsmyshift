@@ -3,13 +3,11 @@ include 'dbh_addOnly.php';
 include 'dbh_readOnly.php';
 include 'config.php';
 date_default_timezone_set('America/New_York');
-//include "../includes/recaptchalib.php";
+include "../includes/recaptchalib.php";
 
-/*
 if ($recap_error) {
     exit();
 }
-*/
 
 $firstName = $_POST['firstName'];
 $firstName = sanitize($firstName);
@@ -35,37 +33,6 @@ $date = date("m/d/Y @ g:ia");
 $billing = $_POST['billing'];
 $isAdmin = 0;
 $weatherZip = $_POST['zip'];
-
-/* Lat & Long */
-$file = "../includes/zip_lat_long.txt";
-$fileArray = [];
-$handle = fopen($file, "r");
-if ($handle) {
-    while (($line = fgets($handle)) !== false) {
-       array_push($fileArray, $line);
-    }
-
-    fclose($handle);
-} else {
-    // error opening the file.
-} 
-
-$zips = [];
-$lats = [];
-$longs = [];
-
-foreach ($fileArray as $line) {
-    array_push($zips, substr($line, 0, 5));
-    array_push($lats, substr($line, 6, 9));
-    array_push($longs, substr($line, 17, 10));
-}
-
-$zipIndex = array_search($weatherZip, $zips);
-$lat = $lats[$zipIndex];
-$long = $longs[$zipIndex];
-echo "lat: " . $lat . " long: " . $long;
-/* Lat & Long */
-
 if ($_POST['role'] == 'admin') {
     $isAdmin = 1;
 } else if ($_POST['role'] == 'regular') {
@@ -88,9 +55,9 @@ function insertIntoEmployees() {
     }
 }
 function updateCompanies() {
-    global $firstName, $lastName, $username, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly, $weatherZip, $billing, $lat, $long;
+    global $firstName, $lastName, $username, $email, $phone, $org, $companyID, $isAdmin, $date, $conn_addOnly, $weatherZip, $billing;
     if ($isAdmin == 1) {
-        $sql = "INSERT INTO companies(organization, companyID, adminUsername, adminEmail, organizationCount, weatherZip, weatherLat, weatherLong, weatherShow, defaultCalView, billing, totalTextSent, totalEmailSent, canViewLogins, dateCreated) VALUES ('{$org}', '{$companyID}', '{$username}', '{$email}', 1, '{$weatherZip}', '{$lat}', '{$long}', 1, 'month', '{$billing}', 0, 0, 0, '{$date}')";
+        $sql = "INSERT INTO companies(organization, companyID, adminUsername, adminEmail, organizationCount, weatherZip, weatherShow, defaultCalView, billing, totalTextSent, totalEmailSent, canViewLogins, dateCreated) VALUES ('{$org}', '{$companyID}', '{$username}', '{$email}', 1, '{$weatherZip}', 1, 'month', '{$billing}', 0, 0, 0, '{$date}')";
     } else if ($isAdmin == 0) {
         $sql = "SELECT * FROM companies WHERE `companyID`='{$companyID}';";
         $result1 = mysqli_query($conn_addOnly, $sql);

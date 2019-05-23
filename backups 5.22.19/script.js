@@ -7,11 +7,6 @@ $(document).ready(function() {
   var weatherShow = $('#weatherShow').val();
   var defaultCalView = $('#defaultCalView').val();
   var zip = $('#zip').val();
-  var lat = $('#lat').val();
-  var lon = $('#long').val();
-  var ke = "10449044bf47f3b0347b04a49ea44515";
-  var url = "https://api.darksky.net/forecast/" + ke + "/" + lat + "," + lon;
-  var proxy = "https://cors-anywhere.herokuapp.com/";
   var isAdmin = $('.isAdmin').text();
   var isEditable;
   if (isAdmin == 1) {
@@ -212,44 +207,6 @@ $(document).ready(function() {
     var date = new Date();
     date.setDate(date.getDate() - 1);
     
-    $.getJSON(proxy + url, function(forecast) {
-	    result = forecast;
-	    var days = result["daily"]["data"];
-	    for (var i = 0; i < days.length; i++) {
-		    text = parseWeather(days[i]["summary"]);
-		    //console.log(days[i]["summary"]);
-		    text = "~" + text + "~";
-		    date.setDate(date.getDate() + 1);
-            today = date.toISOString();
-            myEvent = {
-                title: text,
-                allDay: true,
-                start: today,
-                editable: false,
-                color: '#ad42f4'
-            };
-            if (weatherShow == 1) {
-                $('#calendar').fullCalendar('renderEvent', myEvent);
-            }
-            
-	    }
-    });
-    
-    function parseWeather(original) {
-        var modified = original;
-        var conditions = ["sunny", "sun", "rain", "rain", "cloudy", "clouds", "breezy", "breeze", "snow", "snowy", "wind", "windy", "overcast"];
-        original = original.toUpperCase();
-        for (var i = 0; i < conditions.length; i++) {
-            conditions[i] = conditions[i].toUpperCase();
-            if (original.indexOf(conditions[i]) >= 0) {
-                modified = modified.substr(0, original.indexOf(conditions[i]) + conditions[i].length);
-            }
-        }
-        
-        return modified;
-    }
-    
-    /*
     $.simpleWeather({
         woeid: '2357536', //2357536
         location: zip,
@@ -277,7 +234,7 @@ $(document).ready(function() {
             location.reload();
         }
     });
-    */
+
   function isElemOverDiv() {
         var trashEl = jQuery('#trash');
 

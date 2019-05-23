@@ -22,9 +22,5 @@ foreach ($fileArray as $line) {
     array_push($longs, substr($line, 17, 10));
 }
 
-$zipIndex = array_search($weatherZip, $zips);
-$lat = $lats[$zipIndex];
-$long = $longs[$zipIndex];
-
 
 ?>

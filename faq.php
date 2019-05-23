@@ -66,6 +66,9 @@ include_once("analyticstracking.php");
             <h4><b>How do I prevent an (ex) employee from creating an account?</b></h4>
             <h5>Employers are able to blacklist a specific user from creating an account with their organization. To submit a blacklist, click <a href="blacklist-request.php">here</a>.</h5>
         </div>
+        <div class="row">
+            <h4><b>Weather <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a>.</b></h4>
+        </div>
     </div>
     <script type="text/javascript"></script>
     <script>

@@ -30,8 +30,6 @@ $lastLogin = $Account->getLastLogin();
 $securityQuestion = $Account->getSecurityQuestion();
 $securityAnswer = $Account->getSecurityAnswer();
 $zip = $Account->getZip($companyID, $conn_readOnly);
-$lat = $Account->getLat($companyID, $conn_readOnly);
-$long = $Account->getLong($companyID, $conn_readOnly);
 $defaultCalView = $Account->getDefaultCalView($companyID, $conn_readOnly);
 $weatherShow = $Account->getWeatherShow($companyID ,$conn_readOnly);
 $booleanAgreeTC = $Account->getBooleanAgreeTC($conn_readOnly);
@@ -87,13 +85,14 @@ $date = (String) date("Y-m-d");
 	<title><?php echo $organization; ?> Schedule</title>
 	<?php include 'includes/header.php'; ?>
     <!-- Start of FullCalendar -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css'/>
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src='fullcalendar/moment.js'></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js"></script>
 	<!-- End of FullCalendar -->
 	<script type="text/javascript" src="script.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+	<!--script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script-->
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" type="text/css" href="main-styles.css">
 	<script type="text/javascript">var userip;</script>
@@ -142,8 +141,6 @@ echo <<<HTML
 <input id="adminName" type="hidden" value="{$adminName}" />
 <input id="adminEmail" type="hidden" value="{$adminEmail}" />
 <input id="zip" type="hidden" value="{$zip}" />
-<input id="lat" type="hidden" value="{$lat}" />
-<input id="long" type="hidden" value="{$long}" />
 <input id="weatherShow" type="hidden" value="{$weatherShow}" />
 <input id="defaultCalView" type="hidden" value="{$defaultCalView}" />
 <input id='date' type='hidden' value='{$date}'/>
