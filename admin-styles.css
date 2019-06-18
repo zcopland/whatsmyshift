@@ -12,3 +12,19 @@ h1#panel {
 strong.info {
     color: #FFF;
 }
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    color: #FC4A1A;
+}
+.input-clear {
+    background: transparent;
+    border: none;
+}
+.td_phone {
+    width: 95px;
+}
+.input_email {
+    width: 100%;
+}
+.td_email {
+    width: 250px;
+}

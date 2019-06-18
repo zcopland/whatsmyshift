@@ -65,6 +65,7 @@ echo <<<HTML
     <!-- End of Bootsrap -->
     <link rel="stylesheet" type="text/css" href="styles.css"/>
     <link rel="stylesheet" type="text/css" href="admin-styles.css"/>
+    <script src="characterHandling.js"></script>
   </head>
   <body>
     <div class="container">
@@ -149,6 +150,10 @@ echo <<<HTML
     </div>
     <script>
         $(document).ready(function() {
+            var editing = false;
+            var currEditingVal = 0;
+            var currEmail = '';
+            var currPhone = '';
             $('#saved-small').hide();
             $('#back').click(function() {
                 window.history.back(-1);
@@ -192,6 +197,60 @@ echo <<<HTML
                     }
                 }
             });
+          });
+          $('.editUser').click(function() {
+              var val = $(this).val();
+              var spanID = 'span_' + val;
+              if (!editing) {
+                  currEditingVal = val;
+                  currEmail = $('#email_' + val).val();
+                  currPhone = $('#phone_' + val).val();
+                  $('#email_' + val).removeAttr('readonly');
+                  $('#phone_' + val).removeAttr('readonly');
+                  $('#' + spanID).removeClass('glyphicon-pencil');
+                  $('#' + spanID).addClass('glyphicon-floppy-disk');
+                  editing = true;
+              } else if (editing && val == currEditingVal) {
+                    var com = confirm('Do you want to save changes?');
+                    if (com) {
+                        var newEmail = $('#email_' + val).val();
+                        var newPhone = $('#phone_' + val).val();
+                        $.ajax({
+                            type: "POST",
+                            url: "db/updateUser.php",
+                            data: {val: val, email: newEmail, phone: newPhone},
+                            success: function(result){
+                                if (result) {
+                                    location.reload();
+                                } else {
+                                    console.log("Query: " + result);
+                                }
+                            }
+                        });
+                    } else {
+                        $('#email_' + val).val(currEmail);
+                        $('#phone_' + val).val(currPhone);
+                    }
+                    $('#email_' + val).prop('readonly', true);
+                    $('#phone_' + val).prop('readonly', true);
+                    $('#' + spanID).removeClass('glyphicon-floppy-disk');
+                    $('#' + spanID).addClass('glyphicon-pencil');
+                    editing = false;
+                    currEditingVal = 0;
+                    currEmail = null;
+                    currPhone = null;
+                } else {
+                    $('#email_' + currEditingVal).prop('readonly', true);
+                    $('#phone_' + currEditingVal).prop('readonly', true);
+                    $('#email_' + currEditingVal).val(currEmail);
+                    $('#phone_' + currEditingVal).val(currPhone);
+                    $('#' + 'span_' + currEditingVal).removeClass('glyphicon-floppy-disk');
+                    $('#' + 'span_' +  currEditingVal).addClass('glyphicon-pencil');
+                    editing = false;
+                    currEditingVal = 0;
+                    currEmail = null;
+                    currPhone = null;
+                }
           });
           $('.deleteUser').click(function() {
               var val = $(this).val();
