@@ -103,6 +103,22 @@ class Account {
         return $row['weatherZip'];
     }
     
+    //Get the latitude of the user's associated company
+    public function getLat($companyID, $conn) {
+        $query = "SELECT * FROM `companies` WHERE companyID='{$companyID}';";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        return $row['weatherLat'];
+    }
+    
+    //Get the longitude of the user's associated company
+    public function getLong($companyID, $conn) {
+        $query = "SELECT * FROM `companies` WHERE companyID='{$companyID}';";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        return $row['weatherLong'];
+    }
+    
     //Get the weatherShow boolean of user's associated company
     public function getWeatherShow($companyID, $conn) {
         $query = "SELECT * FROM `companies` WHERE companyID='{$companyID}';";
@@ -155,7 +171,7 @@ class Account {
     public function getEmployeeTable($companyID, $conn) {
         $query = "SELECT * FROM `employees` WHERE companyID='{$companyID}' ORDER BY lastName;";
         $result = mysqli_query($conn, $query);
-        $html = "<div id=\"employeeTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Name</th><th>Username</th><th>Email</th><th>Phone</th><th>Last Login</th><th align=\"center\">Delete</th><th align=\"center\">Reset Password</th></tr>";
+        $html = "<div id=\"employeeTable\" class=\"container table-responsive\"><table class='table table-hover'><tr><th>Name</th><th>Username</th><th>Email</th><th>Phone</th><th>Last Login</th><th align=\"center\">Edit</th><th align=\"center\">Delete</th><th align=\"center\">Reset Password</th></tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             $button_delete = '';
             if ($row['isAdmin'] != 1) {
@@ -171,9 +187,12 @@ class Account {
     <tr>
       <td>{$row['lastName']}, {$row['firstName']}</td>
       <td>{$row['username']}</td>
-      <td>{$row['email']}</td>
-      <td>{$row['phone']}</td>
+      <td class="td_email"><input type="email" id="email_{$row['id']}" class="input-clear input_email" value="{$row['email']}" onkeyup="emailSymbols(this)" readonly/></td>
+      <td class="td_phone"><input type="tel" id="phone_{$row['id']}" class="input-clear td_phone" value="{$row['phone']}" onkeyup="numbersOnly(this)" maxlength="10" readonly/></td>
       <td>{$row['lastLogin']}</td>
+      <td><div class="text-center">
+        <button value="{$row['id']}" class='editUser btn btn-xs btn-default'><span id="span_{$row['id']}" class='glyphicon glyphicon-pencil'></span></button>
+      </div></td>
       <td><div class="text-center">{$button_delete}</div></td>
       <td><div class="text-center">{$button_reset}</div></td>
 TEXT;
