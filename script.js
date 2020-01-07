@@ -243,8 +243,8 @@ $(document).ready(function() {
     
     function parseWeather(original) {
         var modified = original;
-        var conditions = ["sunny", "sun", "rain", "rain", "cloudy", "clouds", "breezy", "breeze", "snow",
-            "snowy", "wind", "windy", "overcast", "morning", "clear", "overnight", "drizzle"];
+        var conditions = ["sunny", "sun", "rain", "rain", "cloudy", "clouds", "breezy", "breeze",
+            "snowy", "wind", "windy", "overcast", "morning", "clear", "overnight", "drizzle", "evening"];
         original = original.toUpperCase();
         for (var i = 0; i < conditions.length; i++) {
             conditions[i] = conditions[i].toUpperCase();
